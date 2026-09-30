@@ -201,7 +201,7 @@ p { max-width: var(--measure); }
 .hero h1 { max-width: 14ch; }
 .hero h1 > span { display: block; }
 .hero h1 em { font-style: normal; color: var(--acc); }
-.hero-lead { margin-inline: auto; max-width: 52ch; }
+.hero-lead { margin-inline: auto; max-width: 52ch; text-wrap: pretty; }
 .hero-cta { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 8px; }
 /* the peek: the top of the terminal shows in the first screen and rises as the page scrolls */
 .peek-slot { position: relative; z-index: 2; padding-inline: var(--gutter); height: 0; }
@@ -217,11 +217,11 @@ p { max-width: var(--measure); }
 .pr-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; font-weight: 500; }
 .pr-v { font-family: var(--f-d); font-variant-numeric: tabular-nums; }
 @media (hover: hover) and (pointer: fine) { .peek:hover { transform: translateY(-6px); } }
+@media (max-width: 1023px) { .hero-chart { height: 30%; } } /* phone and tablet: the line runs under the buttons, not through the lead */
+@media (max-width: 1199px) { .hc-tag { display: none; } } /* under ~1160 the tag lands on the headline or the lead (QA 30.9.2026: 1024x768, 768, 390) */
 @media (max-width: 767px) {
   .hero h1 { font-size: calc(clamp(34px, 9.4vw, 44px) * var(--a11y-scale)); }
   .hero-cta { flex-direction: column; align-items: stretch; width: 100%; }
-  .hero-chart { height: 30%; }
-  .hc-tag { display: none; } /* on a phone the buttons stand over the chart: the tag crossed their text while it rode up (QA 30.9.2026) */
   .peek { padding: 12px 12px 20px; }
   .peek-top > span:nth-child(2) { display: none; }
 }
@@ -246,6 +246,10 @@ p { max-width: var(--measure); }
 .bl::before { content: ""; width: 16px; height: 2px; border-radius: 2px; background: rgba(238, 243, 240, .35); }
 .bl-general::before { background: var(--acc); }
 .bl-t { flex-basis: 100%; }
+@media (max-width: 1023px) { /* no pin below 1024: a full-screen minimum only added blank space around the statement (QA 30.9.2026) */
+  .breath { min-height: 0; padding-bottom: var(--sec); }
+  .peek-slot + .breath { padding-top: calc(var(--sec-breath) + 64px); } /* clears the peek at rest and in reduced motion, without a blank screen once it has risen */
+}
 
 /* ---------- 03 the terminal (C11, a sticky board beside the list) ---------- */
 .term { padding-top: var(--sec-loose); }
@@ -275,9 +279,10 @@ p { max-width: var(--measure); }
 .pub[aria-pressed="true"] i { background: var(--acc); }
 .pub[aria-pressed="true"] i::after { transform: translateX(-18px); background: var(--acc-ink); }
 .b-stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin-top: 4px; }
-.b-stats div { display: grid; gap: 4px; }
+.b-stats div { display: grid; gap: 4px; align-content: space-between; } /* a label on two lines does not push its value off the row */
 .b-stats dt { font-size: var(--fs-meta); color: var(--muted); }
-.b-stats dd { font-family: var(--f-d); font-size: calc(20px * var(--a11y-scale)); font-variant-numeric: tabular-nums; }
+.b-stats dd { font-family: var(--f-d); font-size: calc(20px * var(--a11y-scale)); font-variant-numeric: tabular-nums; white-space: nowrap; }
+.b-stats dd small { font-family: var(--f); font-size: var(--fs-meta); color: var(--ink-soft); }
 .b-dist { position: relative; height: 32px; margin-top: 8px; direction: ltr; }
 .b-dist::before { content: ""; position: absolute; inset-inline: 0; top: 15px; height: 2px; border-radius: 2px; background: rgba(238, 243, 240, .1); }
 .b-dist i { position: absolute; top: 50%; inset-inline-start: var(--p); width: 8px; height: 8px; margin: -4px 0 0 -4px; border-radius: 50%; background: rgba(238, 243, 240, .38); transition: background-color .3s var(--e); }
@@ -401,7 +406,7 @@ p { max-width: var(--measure); }
 .partner-ph { width: 64px; height: 64px; border-radius: 50%; background: radial-gradient(circle at 40% 30%, #1E2923, #0C110F); box-shadow: inset 0 0 0 1px rgba(255, 255, 255, .1); flex: none; }
 .partner p { display: grid; line-height: 1.4; }
 .partner span { color: var(--muted); font-size: var(--fs-small); }
-@media (max-width: 1023px) { .about-grid { grid-template-columns: 1fr; } .about-v { max-width: 560px; } }
+@media (max-width: 1023px) { .about-grid { grid-template-columns: 1fr; } .about-v { max-width: 560px; } .about-t { order: -1; } } /* the head before its picture on a phone */
 @media (max-width: 767px) { .card-stage { inset-inline-start: 12%; width: 86%; } .about-v { padding-bottom: 72px; } }
 
 /* ---------- 06 the band (C10): the market, live, then four facts ---------- */
@@ -428,6 +433,7 @@ p { max-width: var(--measure); }
 .c-row output { font-family: var(--f-d); font-size: calc(20px * var(--a11y-scale)); font-variant-numeric: tabular-nums; }
 .c-row input { grid-column: 1 / -1; }
 .c-row-seg { grid-template-columns: 1fr; }
+@media (min-width: 768px) { .c-row-seg .seg { justify-self: start; } } /* the four tracks, not a wide empty capsule */
 input[type="range"] { -webkit-appearance: none; appearance: none; width: 100%; height: 48px; background: transparent; cursor: pointer; direction: rtl; }
 input[type="range"]::-webkit-slider-runnable-track { height: 8px; border-radius: 8px; background: linear-gradient(to left, var(--acc) var(--p, 50%), rgba(238, 243, 240, .14) var(--p, 50%)); }
 input[type="range"]::-moz-range-track { height: 8px; border-radius: 8px; background: rgba(238, 243, 240, .14); }
@@ -465,7 +471,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--acc); outline-offse
 .rs { display: grid; gap: 8px; align-content: start; }
 .rs-n { font-family: var(--f-d); font-size: calc(clamp(32px, 2.6vw, 56px) * var(--a11y-scale)); line-height: 1; color: transparent; -webkit-text-stroke: 1.5px rgba(238, 243, 240, .55); }
 .rs p { color: var(--ink-soft); max-width: 40ch; }
-@media (max-width: 767px) { .ring-steps { grid-template-columns: 1fr; } }
+@media (max-width: 767px) { .ring-steps { grid-template-columns: 1fr; } .proc .sec-head-c { justify-items: start; text-align: start; margin-inline: 0; } .proc .sec-head-c h2 { margin-inline: 0; } } /* a single column of running text: the head goes with it, to the start */
 .proc.is-ring { padding-block: 0; }
 .is-ring .proc-in { min-height: 100svh; display: grid; align-content: center; gap: clamp(24px, 3vh, 48px); padding-block: calc(var(--hd-h) + 24px) 32px; }
 .is-ring .sec-head { margin-bottom: 0; }
@@ -522,7 +528,7 @@ input[type="range"]:focus-visible { outline: 2px solid var(--acc); outline-offse
 .topic-in { display: flex; flex-wrap: wrap; gap: 8px; }
 .topic label { position: relative; display: grid; }
 .topic input { position: absolute; opacity: 0; inset: 0; margin: 0; cursor: pointer; }
-.topic span { display: grid; place-items: center; min-height: 44px; padding: 0 16px; border-radius: 999px; background: rgba(255, 255, 255, .06); font-size: var(--fs-small); font-weight: 500; transition: background-color .2s var(--e), color .2s var(--e); }
+.topic label span { display: grid; place-items: center; min-height: 44px; padding: 0 16px; border-radius: 999px; background: rgba(255, 255, 255, .06); font-size: var(--fs-small); font-weight: 500; transition: background-color .2s var(--e), color .2s var(--e); }
 .topic input:checked + span { background: var(--ink); color: var(--bg); }
 .topic input:focus-visible + span { outline: 2px solid var(--acc); outline-offset: 2px; }
 .consent { display: grid; grid-template-columns: 24px 1fr; gap: 12px; align-items: start; font-size: var(--fs-small); color: var(--ink-soft); }
@@ -573,8 +579,8 @@ input[type="range"]:focus-visible { outline: 2px solid var(--acc); outline-offse
 .fab svg { width: 24px; height: 24px; }
 .fab-a11y { background: #1A2420; box-shadow: inset 0 0 0 2px rgba(238, 243, 240, .7), 0 10px 28px rgba(0, 0, 0, .45); }
 .fab:active { transform: scale(.94); }
-/* phone: never on running text. With the bar on, it docks in the slot the bar keeps for it; with the bar off it is a tab in the gutter */
-@media (max-width: 767px) {
+/* phone and tablet: never on running text (the gutter is under 52px up to 1023). With the bar on (phone), it docks in the slot the bar keeps for it; with the bar off it is a tab in the gutter */
+@media (max-width: 1023px) {
   .fabs { bottom: 16px; inset-inline-end: 0; }
   .fab-a11y { width: 24px; height: 48px; border-radius: 0 12px 12px 0; }
   .fab-a11y svg { width: 16px; height: 16px; }

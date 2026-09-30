@@ -164,7 +164,9 @@
       B("ylab").textContent = PERIOD[S.period].t;
       B("fee").textContent = pct(num(sel.AVG_ANNUAL_MANAGEMENT_FEE));
       var sh = num(sel.SHARPE_RATIO); B("sharpe").textContent = sh === null ? "-" : sh.toFixed(2);
-      var a = num(sel.TOTAL_ASSETS); B("assets").textContent = a === null ? "-" : (a >= 1000 ? (a / 1000).toFixed(1) + " מיליארד" : Math.round(a) + " מיליון");
+      // the unit in body type beside the number: "463 מיליון" in the display face broke onto two lines on a phone
+      var a = num(sel.TOTAL_ASSETS), ad = B("assets"); ad.textContent = a === null ? "-" : (a >= 1000 ? (a / 1000).toFixed(1) : String(Math.round(a)));
+      if (a !== null) { var u = document.createElement("small"); u.textContent = a >= 1000 ? "מיליארד" : "מיליון"; ad.appendChild(document.createTextNode(" ")); ad.appendChild(u); }
       B("sr").textContent = sel.FUND_NAME + ": מקום " + sel._rank + " מתוך " + L.length + ", " + PERIOD[S.period].t + " " + pct(sel._v) + ".";
       // the spread: every fund of the track on one line, low to high, the chosen one lit
       var lo = L[L.length - 1]._v, hi = L[0]._v, span = hi - lo || 1;
