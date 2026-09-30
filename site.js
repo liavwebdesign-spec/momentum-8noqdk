@@ -20,13 +20,29 @@
     addEventListener("scroll", chk, { passive: true }); addEventListener("resize", chk); requestAnimationFrame(chk); setTimeout(chk, 300);
   }
 
+  /* the trend lines have non-scaling strokes, so their dashes are in screen pixels while DrawSVG measures in the SVG's own
+     units: a line ended early on a narrow screen and repeated in pieces on a wide one (QA 30.9.2026: the tracks were done
+     at a third of the scroll on a phone, the ring closed before its fourth station). The length is measured on screen and
+     the CSS draws by --p, 0 to 1 */
+  var screenLen = function (p) {
+    var L = p.getTotalLength(), m = p.getScreenCTM(), s = 0, a = null; if (!m) return L;
+    for (var i = 0; i <= 200; i++) { var q = p.getPointAtLength(L * i / 200), x = m.a * q.x + m.c * q.y, y = m.b * q.x + m.d * q.y; if (a) s += Math.hypot(x - a[0], y - a[1]); a = [x, y]; }
+    return s;
+  };
+  var drawable = function (els) {
+    els = [].concat(els).filter(Boolean);
+    var fit = function () { els.forEach(function (p) { p.style.setProperty("--S", Math.ceil(screenLen(p)) + 2 + "px"); }); };
+    els.forEach(function (p) { p.classList.add("sd"); }); fit(); addEventListener("resize", fit);
+    return els;
+  };
+
   $$("[data-year]").forEach(function (e) { e.textContent = new Date().getFullYear(); });
 
   /* ---------- the page opening: once, about a second and a half. The headline rises line by line from a mask, and the
      real trend line draws itself behind the glass with its dot riding the tip (MV:g126, from export/g126.html) ---------- */
   (function () {
     var items = $$("[data-open]"), line = $(".hc-line"), fill = $(".hc-fill"), dot = $(".hc-dot"), gain = dot && $(".hc-tag b", dot);
-    var done = function () { html.classList.remove("open-anim"); var q = $(".peek"); if (q) q.style.removeProperty("opacity"); };
+    var done = function () { html.classList.remove("open-anim"); [".peek", ".hd-pill"].forEach(function (s) { var q = $(s); if (q) q.style.removeProperty("opacity"); }); };
     if (!html.classList.contains("open-anim")) return;
     if (!G || !items.length || html.classList.contains("a11y-still")) return done();
     var SHUT = "inset(125% -6% -25% -6%)", OPEN = "inset(-20% -6% -25% -6%)";
@@ -34,7 +50,8 @@
     // the header comes down first and the window at the bottom of the screen rises last: the whole first screen enters
     // in order, not only its middle (Liav, 30.9.2026). The slot moves, not the peek: the peek's own y belongs to the scroll
     var pill = $(".hd-pill"), slot = $(".peek-slot"), pk = $(".peek");
-    if (pill) { tl.fromTo(pill, { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.7, clearProps: "opacity,transform" }, 0); }
+    // its opacity stays inline until the whole opening is done: cleared earlier, .open-anim hid the header again until the failsafe
+    if (pill) { tl.fromTo(pill, { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.7, clearProps: "transform" }, 0); }
     if (slot && pk) { tl.set(pk, { opacity: 1 }, 0.75).fromTo(slot, { opacity: 0, y: 48 }, { opacity: 1, y: 0, duration: 0.9, clearProps: "opacity,transform" }, 0.75); }
     items.forEach(function (el, i) {
       var at = 0.12 + Math.min(i, 6) * 0.09;
@@ -50,9 +67,9 @@
         dot.style.setProperty("--x", (pt.x / 16).toFixed(2) + "%"); dot.style.setProperty("--y", (pt.y / 6).toFixed(2) + "%");
         if (gain) { var v = end * Math.pow(o.p, 1.4); gain.textContent = (v >= 0 ? "+" : "") + v.toFixed(1) + "%"; gain.parentNode.style.opacity = Math.max(0, Math.min(1, (o.p - 0.22) / 0.15)); } // the tag sits left of the dot: it waits until the dot is far enough from the screen edge
       };
-      G.set(line, { drawSVG: "0%", opacity: 1 }); G.set(fill, { opacity: 0 }); G.set(dot, { opacity: 1 }); paint();
+      drawable(line); G.set(line, { "--p": 0, opacity: 1 }); G.set(fill, { opacity: 0 }); G.set(dot, { opacity: 1 }); paint();
       tl.eventCallback("onComplete", (function (f) { return function () { f(); var tg = $(".hc-tag"); if (tg) tg.style.removeProperty("opacity"); }; })(tl.eventCallback("onComplete")));
-      tl.to(line, { drawSVG: "100%", duration: 1.8, ease: "power2.inOut" }, 0.2)
+      tl.to(line, { "--p": 1, duration: 1.8, ease: "power2.inOut" }, 0.2)
         .to(o, { p: 1, duration: 1.8, ease: "power2.inOut", onUpdate: paint }, 0.2)
         .to(fill, { opacity: 1, duration: 0.8, ease: "power2.out" }, 1.4);
     } else if (line) G.set([line, fill, dot], { opacity: 1 });
@@ -135,8 +152,8 @@
 
   /* ---------- MV:g48, from export/g48.html: the statement is painted word by word as it is read, from a whisper to full,
      and behind it four real tracks of the study funds draw themselves (Liav, 30.9.2026: "hardly noticeable, too empty").
-     Split into words only (never letters: Hebrew and screen readers). On desktop the section holds for one screen so the
-     reading happens in place; on a phone it plays over the section's own passage. Not in site-edit, not in reduced motion ---------- */
+     Split into words only (never letters: Hebrew and screen readers). On desktop the section holds for one screen, with the
+     statement at the middle of it (not the section top: its top padding clears the peek), so the reading happens in place; on a phone it plays over the section's own passage. Not in site-edit, not in reduced motion ---------- */
   var say = $(".say");
   if (say && G && ST && !reduced && !/[?&]edit=1/.test(location.search)) {
     var words = [], split = function (node, into) {
@@ -152,11 +169,11 @@
     var frag = document.createDocumentFragment(); split(say, frag); say.textContent = ""; say.appendChild(frag);
     say.classList.add("is-split");
     var breath = $(".breath"), bts = $$(".bt"), wide = matchMedia("(min-width: 1024px)").matches;
-    if (window.DrawSVGPlugin) G.set(bts, { drawSVG: "0%" });
+    drawable(bts); G.set(bts, { "--p": 0 });
     var btl = G.timeline({ scrollTrigger: wide
-      ? { trigger: breath, start: "top top", end: "+=100%", scrub: 0.5, pin: true, anticipatePin: 1 }
+      ? { trigger: $(".breath-in"), start: "center center", end: "+=100%", scrub: 0.5, pin: breath, anticipatePin: 1 }
       : { trigger: say, start: "top 80%", end: "bottom 45%", scrub: 0.5 } });
-    if (window.DrawSVGPlugin) btl.to(bts, { drawSVG: "100%", duration: 1, ease: "none", stagger: 0.06 }, 0);
+    btl.to(bts, { "--p": 1, duration: 1, ease: "none", stagger: 0.06 }, 0);
     btl.to(words, { color: function (i, el) { return el.closest("em") ? "#EEF3F0" : "rgba(238, 243, 240, .88)"; }, duration: 0.1, stagger: 0.9 / words.length, ease: "none" }, 0.05);
   }
 
@@ -202,10 +219,10 @@
     proc.classList.add("is-ring");
     var draw = $(".ring-draw", ring), dots = $$(".ring-dot", ring), rsteps = $$(".rs", ring), N = rsteps.length, cur = 0;
     var show = function (k) { if (k === cur) return; cur = k; rsteps.forEach(function (r, i) { r.classList.toggle("on", i === k); }); dots.forEach(function (d, i) { d.classList.toggle("on", i <= k); }); };
-    G.set(draw, { drawSVG: "0% 0%" });
+    drawable(draw); G.set(draw, { "--p": 0 });
     G.timeline({ scrollTrigger: { trigger: proc, start: "top top", end: "+=180%", scrub: 0.5, pin: true, anticipatePin: 1,
         onUpdate: function (self) { show(Math.min(N - 1, Math.floor(self.progress * N * 0.999))); } } })
-      .to(draw, { drawSVG: "0% 100%", duration: 1, ease: "none" });
+      .to(draw, { "--p": 1, duration: 1, ease: "none" });
   }
 
   // the terminal and the ticker arrive after the first layout: every trigger is measured again once they are in

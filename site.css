@@ -189,6 +189,7 @@ p { max-width: var(--measure); }
 .hero-chart { position: absolute; inset-inline: 0; bottom: var(--sec); height: 52%; z-index: -1; direction: ltr; pointer-events: none;
   -webkit-mask: linear-gradient(to top, transparent 0, #000 18%, #000 70%, transparent); mask: linear-gradient(to top, transparent 0, #000 18%, #000 70%, transparent); }
 .hero-chart svg { width: 100%; height: 100%; overflow: visible; }
+.sd { stroke-dasharray: var(--S) var(--S); stroke-dashoffset: calc((1 - var(--p, 1)) * var(--S)); } /* drawn by screen length (site.js drawable) */
 .hc-grid line { stroke: rgba(238, 243, 240, .06); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .hc-line { fill: none; stroke: var(--acc); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; opacity: .9; }
 .hc-fill { fill: url(#hc-g); }
@@ -220,7 +221,7 @@ p { max-width: var(--measure); }
   .hero h1 { font-size: calc(clamp(34px, 9.4vw, 44px) * var(--a11y-scale)); }
   .hero-cta { flex-direction: column; align-items: stretch; width: 100%; }
   .hero-chart { height: 30%; }
-  .hc-tag small { display: none; }
+  .hc-tag { display: none; } /* on a phone the buttons stand over the chart: the tag crossed their text while it rode up (QA 30.9.2026) */
   .peek { padding: 12px 12px 20px; }
   .peek-top > span:nth-child(2) { display: none; }
 }
