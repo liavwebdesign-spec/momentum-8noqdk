@@ -26,13 +26,18 @@
      real trend line draws itself behind the glass with its dot riding the tip (MV:g126, from export/g126.html) ---------- */
   (function () {
     var items = $$("[data-open]"), line = $(".hc-line"), fill = $(".hc-fill"), dot = $(".hc-dot"), gain = dot && $(".hc-tag b", dot);
-    var done = function () { html.classList.remove("open-anim"); };
+    var done = function () { html.classList.remove("open-anim"); var q = $(".peek"); if (q) q.style.removeProperty("opacity"); };
     if (!html.classList.contains("open-anim")) return;
     if (!G || !items.length || html.classList.contains("a11y-still")) return done();
     var SHUT = "inset(125% -6% -25% -6%)", OPEN = "inset(-20% -6% -25% -6%)";
     var tl = G.timeline({ defaults: { ease: "power3.out" }, onComplete: function () { done(); G.set(items, { clearProps: "opacity,transform,clipPath" }); } });
+    // the header comes down first and the window at the bottom of the screen rises last: the whole first screen enters
+    // in order, not only its middle (Liav, 30.9.2026). The slot moves, not the peek: the peek's own y belongs to the scroll
+    var pill = $(".hd-pill"), slot = $(".peek-slot"), pk = $(".peek");
+    if (pill) { tl.fromTo(pill, { opacity: 0, y: -18 }, { opacity: 1, y: 0, duration: 0.7, clearProps: "opacity,transform" }, 0); }
+    if (slot && pk) { tl.set(pk, { opacity: 1 }, 0.75).fromTo(slot, { opacity: 0, y: 48 }, { opacity: 1, y: 0, duration: 0.9, clearProps: "opacity,transform" }, 0.75); }
     items.forEach(function (el, i) {
-      var at = Math.min(i, 6) * 0.09;
+      var at = 0.12 + Math.min(i, 6) * 0.09;
       if (el.matches("h1")) {
         var lines = el.hasAttribute("data-lines") ? $$(":scope > span", el) : [el];
         tl.set(el, { opacity: 1 }, at).fromTo(lines, { clipPath: SHUT, y: 28 }, { clipPath: OPEN, y: 0, duration: 0.9, stagger: 0.12, clearProps: "clipPath,transform" }, at);
@@ -43,9 +48,10 @@
       var paint = function () {
         var pt = line.getPointAtLength(L * o.p);
         dot.style.setProperty("--x", (pt.x / 16).toFixed(2) + "%"); dot.style.setProperty("--y", (pt.y / 6).toFixed(2) + "%");
-        if (gain) { var v = end * Math.pow(o.p, 1.4); gain.textContent = (v >= 0 ? "+" : "") + v.toFixed(1) + "%"; }
+        if (gain) { var v = end * Math.pow(o.p, 1.4); gain.textContent = (v >= 0 ? "+" : "") + v.toFixed(1) + "%"; gain.parentNode.style.opacity = Math.max(0, Math.min(1, (o.p - 0.22) / 0.15)); } // the tag sits left of the dot: it waits until the dot is far enough from the screen edge
       };
       G.set(line, { drawSVG: "0%", opacity: 1 }); G.set(fill, { opacity: 0 }); G.set(dot, { opacity: 1 }); paint();
+      tl.eventCallback("onComplete", (function (f) { return function () { f(); var tg = $(".hc-tag"); if (tg) tg.style.removeProperty("opacity"); }; })(tl.eventCallback("onComplete")));
       tl.to(line, { drawSVG: "100%", duration: 1.8, ease: "power2.inOut" }, 0.2)
         .to(o, { p: 1, duration: 1.8, ease: "power2.inOut", onUpdate: paint }, 0.2)
         .to(fill, { opacity: 1, duration: 0.8, ease: "power2.out" }, 1.4);
@@ -127,9 +133,10 @@
     dlg.addEventListener("click", function (e) { if (e.target === dlg) dlg.close(); });
   }
 
-  /* ---------- MV:g48, from export/g48.html: the statement is painted word by word as it is read. Split into words only
-     (never letters: Hebrew and screen readers), the emphasised words keep their em. The words start in the muted colour
-     that already passes AA, so the paragraph is readable at every point of the scroll. Not in site-edit ---------- */
+  /* ---------- MV:g48, from export/g48.html: the statement is painted word by word as it is read, from a whisper to full,
+     and behind it four real tracks of the study funds draw themselves (Liav, 30.9.2026: "hardly noticeable, too empty").
+     Split into words only (never letters: Hebrew and screen readers). On desktop the section holds for one screen so the
+     reading happens in place; on a phone it plays over the section's own passage. Not in site-edit, not in reduced motion ---------- */
   var say = $(".say");
   if (say && G && ST && !reduced && !/[?&]edit=1/.test(location.search)) {
     var words = [], split = function (node, into) {
@@ -143,9 +150,14 @@
       });
     };
     var frag = document.createDocumentFragment(); split(say, frag); say.textContent = ""; say.appendChild(frag);
-    say.classList.add("is-split"); say.classList.remove("rv");
-    G.timeline({ scrollTrigger: { trigger: say, start: "top 78%", end: "bottom 50%", scrub: 0.4 } })
-      .to(words, { color: function (i, el) { return el.closest("em") ? "#EEF3F0" : "rgba(238, 243, 240, .9)"; }, duration: 0.4, stagger: 0.35, ease: "none" }, 0);
+    say.classList.add("is-split");
+    var breath = $(".breath"), bts = $$(".bt"), wide = matchMedia("(min-width: 1024px)").matches;
+    if (window.DrawSVGPlugin) G.set(bts, { drawSVG: "0%" });
+    var btl = G.timeline({ scrollTrigger: wide
+      ? { trigger: breath, start: "top top", end: "+=100%", scrub: 0.5, pin: true, anticipatePin: 1 }
+      : { trigger: say, start: "top 80%", end: "bottom 45%", scrub: 0.5 } });
+    if (window.DrawSVGPlugin) btl.to(bts, { drawSVG: "100%", duration: 1, ease: "none", stagger: 0.06 }, 0);
+    btl.to(words, { color: function (i, el) { return el.closest("em") ? "#EEF3F0" : "rgba(238, 243, 240, .88)"; }, duration: 0.1, stagger: 0.9 / words.length, ease: "none" }, 0.05);
   }
 
   /* ---------- the moves that follow the scroll: without GSAP, or with reduced motion, every final state is in the markup ---------- */
@@ -181,14 +193,19 @@
     });
   }
 
-  // MV:b35, from export/b35.html: the process line fills with the scroll and each step lights as it passes
-  var vt = $(".vt");
-  if (vt) {
-    var fillEl = $(".vt-fill", vt), steps = $$(".vt-step", vt);
-    if (G && ST && !reduced) {
-      G.fromTo(fillEl, { "--fill": 0 }, { "--fill": 1, ease: "none", scrollTrigger: { trigger: vt, start: "top 62%", end: "bottom 72%", scrub: 0.6 } });
-      steps.forEach(function (s) { ST.create({ trigger: s, start: "top 66%", onEnter: function () { s.classList.add("on"); }, onLeaveBack: function () { s.classList.remove("on"); } }); });
-    } else { fillEl.style.setProperty("--fill", 1); steps.forEach(function (s) { s.classList.add("on"); }); }
+  /* ---------- MV:g22, from export/g22.html: the process ring. The circle paints itself counter-clockwise from the top,
+     each station lights and the centre changes to its step, while the section holds for about two screens. Desktop only
+     and not in reduced motion; everywhere else the four steps stay a plain list (Liav, 30.9.2026: "the circle, not the
+     timeline: it suits a centred composition") ---------- */
+  var proc = $(".proc"), ring = $("[data-ring]");
+  if (proc && ring && G && ST && window.DrawSVGPlugin && !reduced && matchMedia("(min-width: 1024px) and (min-height: 640px)").matches) {
+    proc.classList.add("is-ring");
+    var draw = $(".ring-draw", ring), dots = $$(".ring-dot", ring), rsteps = $$(".rs", ring), N = rsteps.length, cur = 0;
+    var show = function (k) { if (k === cur) return; cur = k; rsteps.forEach(function (r, i) { r.classList.toggle("on", i === k); }); dots.forEach(function (d, i) { d.classList.toggle("on", i <= k); }); };
+    G.set(draw, { drawSVG: "0% 0%" });
+    G.timeline({ scrollTrigger: { trigger: proc, start: "top top", end: "+=180%", scrub: 0.5, pin: true, anticipatePin: 1,
+        onUpdate: function (self) { show(Math.min(N - 1, Math.floor(self.progress * N * 0.999))); } } })
+      .to(draw, { drawSVG: "0% 100%", duration: 1, ease: "none" });
   }
 
   // the terminal and the ticker arrive after the first layout: every trigger is measured again once they are in
@@ -215,6 +232,8 @@
       showSymbolLogo: false, isTransparent: true, displayMode: "compact", colorTheme: "dark", locale: "he_IL"
     });
     tv.appendChild(s);
+    // the widget sizes itself after it loads: the pins below it are measured again when it does (st-refresh, 30.9.2026)
+    if (ST && "ResizeObserver" in window) { var th = 0, rt = 0; new ResizeObserver(function (e) { var h = Math.round(e[0].contentRect.height); if (h !== th) { th = h; clearTimeout(rt); rt = setTimeout(function () { ST.refresh(); }, 150); } }).observe(tv.closest(".band")); }
   }, 1.4);
 
   /* ---------- mobile action bar (MV:cv1): after the hero's own buttons, never beside a form, never over the keyboard ---------- */

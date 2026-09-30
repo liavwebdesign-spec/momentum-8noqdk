@@ -147,12 +147,13 @@ p { max-width: var(--measure); }
 .hd-nav { display: flex; gap: 2px; margin-inline: auto; }
 .hd-link { display: inline-flex; align-items: center; min-height: 44px; padding: 0 16px; border-radius: 999px; font-size: 15px; font-weight: 500; color: var(--ink-soft); text-decoration: none; transition: background-color .18s var(--e), color .18s var(--e); }
 .hd-login { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; padding: 0 16px; border-radius: 999px; font-size: 14px; color: var(--muted); text-decoration: none; transition: color .18s var(--e), background-color .18s var(--e); }
+.hd-cta { min-height: calc(var(--hd-h) - 16px); padding-inline: 24px; } /* 8px above, below and at the end, like the capsule's padding */
 .hd-login svg, .drawer-login svg { width: 16px; height: 16px; }
 @media (hover: hover) and (pointer: fine) { .hd-link:hover, .hd-login:hover { background: rgba(255, 255, 255, .07); color: var(--ink); } }
 .burger { display: none; width: 48px; height: 48px; margin-inline-start: auto; border: 0; border-radius: 50%; background: rgba(255, 255, 255, .08); place-content: center; gap: 6px; cursor: pointer; transition: background-color .18s var(--e); }
 .burger span { display: block; width: 18px; height: 2px; border-radius: 2px; background: var(--ink); }
 @media (max-width: 1100px) { .hd-nav, .hd-login { display: none; } .hd-cta { margin-inline-start: auto; } }
-@media (max-width: 767px) { .hd-pill { min-height: 60px; padding-inline-start: 20px; } .hd-cta { display: none; } .burger { display: grid; } .brand-m { width: 34px; } .brand-t { font-size: 19px; } }
+@media (max-width: 767px) { .hd-pill { min-height: 64px; padding-inline-start: 20px; } .hd-cta { display: none; } .burger { display: grid; } .brand-m { width: 34px; } .brand-t { font-size: 19px; } }
 
 /* ---------- drawer (from the start edge, its own close button) ---------- */
 .drawer { position: fixed; inset: 0; z-index: 80; visibility: hidden; transition: visibility 0s linear .44s; }
@@ -224,13 +225,26 @@ p { max-width: var(--measure); }
   .peek-top > span:nth-child(2) { display: none; }
 }
 
-/* ---------- 02 breath (C14): one statement, centred, in the reading font (13ז: the display font is for h1, h2 and numbers) ---------- */
-.breath { padding: var(--sec-breath) var(--gutter); text-align: center; }
+/* ---------- 02 breath (C14): the statement painted word by word (MV:g48) over four real tracks drawing themselves ---------- */
+.breath { position: relative; isolation: isolate; min-height: 100svh; display: grid; align-content: center; padding: var(--sec-breath) var(--gutter); text-align: center; overflow: clip; }
 .peek-slot + .breath { padding-top: calc(var(--sec-breath) + 112px); }
-.say { max-width: 30ch; margin-inline: auto; font-size: var(--fs-say); line-height: 1.4; font-weight: 500; color: var(--muted); text-wrap: balance; }
+.breath-chart { position: absolute; inset: 14% 0; z-index: -1; direction: ltr; pointer-events: none;
+  -webkit-mask: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent); mask: linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent); }
+.breath-chart svg { width: 100%; height: 100%; overflow: visible; }
+.bt { fill: none; stroke: rgba(238, 243, 240, .2); stroke-width: 1.5; stroke-linejoin: round; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.bt-general { stroke: var(--acc); stroke-opacity: .5; stroke-width: 2; }
+.bt-stocks { stroke: rgba(238, 243, 240, .3); }
+/* a soft pool of the ground behind the words: the lines pass under it and the sentence stays clear */
+.breath-in { position: relative; display: grid; justify-items: center; gap: 32px; padding: clamp(24px, 3vw, 56px); background-image: radial-gradient(closest-side, rgba(7, 10, 9, .9), rgba(7, 10, 9, .6) 60%, rgba(7, 10, 9, 0)); }
+.say { max-width: 30ch; margin-inline: auto; font-size: var(--fs-say); line-height: 1.4; font-weight: 500; color: var(--ink-soft); text-wrap: balance; }
 .say em { font-style: normal; color: var(--ink); }
-.say.is-split, .say.is-split em { color: var(--muted); } /* MV:g48: every word starts muted (AA) and is painted by the scroll */
+.say.is-split, .say.is-split em { color: rgba(238, 243, 240, .24); } /* MV:g48: from a whisper to full, as it is read (reduced motion never splits it) */
 .say .w { display: inline-block; }
+.breath-src { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px 20px; max-width: 56ch; margin-inline: auto; font-size: var(--fs-meta); color: var(--muted); }
+.bl { display: inline-flex; align-items: center; gap: 8px; }
+.bl::before { content: ""; width: 16px; height: 2px; border-radius: 2px; background: rgba(238, 243, 240, .35); }
+.bl-general::before { background: var(--acc); }
+.bl-t { flex-basis: 100%; }
 
 /* ---------- 03 the terminal (C11, a sticky board beside the list) ---------- */
 .term { padding-top: var(--sec-loose); }
@@ -392,7 +406,7 @@ p { max-width: var(--measure); }
 /* ---------- 06 the band (C10): the market, live, then four facts ---------- */
 /* one ground for the whole page (seam-check, 30.9.2026): a section that needs another tone fades it in and out, never a line */
 .band { position: relative; background: linear-gradient(to bottom, transparent, var(--bg-2) 30%, var(--bg-2) 70%, transparent); padding-bottom: var(--sec); }
-.tv { min-height: 46px; direction: ltr; -webkit-mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
+.tv { height: 84px; overflow: hidden; direction: ltr; /* the tape with its change line is 84px: reserved up front so the lazy widget never moves the pins below it */ -webkit-mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); mask: linear-gradient(90deg, transparent, #000 6%, #000 94%, transparent); }
 .tv iframe { color-scheme: light; } /* a dark page paints an opaque white under a light-scheme iframe (Chrome); matching the scheme keeps it transparent */
 .facts { list-style: none; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: var(--gap-m); padding: clamp(32px, 3vw, 56px) var(--gutter) 0; }
 .facts li { display: grid; gap: 4px; justify-items: center; text-align: center; }
@@ -444,17 +458,30 @@ input[type="range"]:focus-visible { outline: 2px solid var(--acc); outline-offse
 .co-note { font-size: var(--fs-meta); color: var(--muted); max-width: 52ch; }
 @media (max-width: 1023px) { .calc-grid { grid-template-columns: 1fr; } }
 
-/* ---------- 08 process (C6, MV:b35): the geometry comes from three variables, so the line and the dots stay aligned ---------- */
-.vt { --vt-pad: clamp(48px, 6vw, 72px); --vt-x: clamp(4px, 1vw, 12px); --vt-dot: clamp(28px, 3vw, 40px);
-  position: relative; max-width: min(780px, 100%); margin-inline: auto; padding-inline-start: var(--vt-pad); }
-.vt-rail { position: absolute; inset-block: 16px 12px; width: 2px; border-radius: 2px; background: rgba(238, 243, 240, .12); inset-inline-start: calc(var(--vt-x) + var(--vt-dot) / 2 - 1px); }
-.vt-fill { position: absolute; top: 0; inset-inline: 0; height: 100%; border-radius: 2px; background: var(--acc); box-shadow: 0 0 12px rgba(0, 255, 6, .5); transform-origin: 50% 0; transform: scaleY(var(--fill, 0)); }
-.vt-step { position: relative; padding-block: clamp(20px, 2.4vw, 32px); }
-.vt-dot { position: absolute; inset-inline-start: calc(var(--vt-pad) * -1 + var(--vt-x)); top: calc(clamp(20px, 2.4vw, 32px) + 2px); width: var(--vt-dot); height: var(--vt-dot); border-radius: 50%; display: grid; place-items: center; background: var(--bg); box-shadow: inset 0 0 0 2px rgba(238, 243, 240, .2); font-family: var(--f-d); font-size: 15px; color: var(--muted); transition: background-color .35s var(--e), box-shadow .35s var(--e), color .35s var(--e); }
-.vt-step.on .vt-dot { background: var(--ink); box-shadow: 0 0 0 6px rgba(238, 243, 240, .1); color: var(--bg); }
-.vt-step h3 { margin-bottom: 8px; color: var(--muted); transition: color .35s var(--e); }
-.vt-step.on h3 { color: var(--ink); }
-.vt-step p { color: var(--ink-soft); max-width: 56ch; }
+/* ---------- 08 process (C6 in a ring, MV:g22). Without .is-ring: a plain numbered list ---------- */
+.ring-svg, .ring-dot { display: none; }
+.ring-steps { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: var(--gap-m); max-width: var(--head); margin-inline: auto; }
+.rs { display: grid; gap: 8px; align-content: start; }
+.rs-n { font-family: var(--f-d); font-size: calc(clamp(32px, 2.6vw, 56px) * var(--a11y-scale)); line-height: 1; color: transparent; -webkit-text-stroke: 1.5px rgba(238, 243, 240, .55); }
+.rs p { color: var(--ink-soft); max-width: 40ch; }
+@media (max-width: 767px) { .ring-steps { grid-template-columns: 1fr; } }
+.proc.is-ring { padding-block: 0; }
+.is-ring .proc-in { min-height: 100svh; display: grid; align-content: center; gap: clamp(24px, 3vh, 48px); padding-block: calc(var(--hd-h) + 24px) 32px; }
+.is-ring .sec-head { margin-bottom: 0; }
+.is-ring .ring { position: relative; width: min(560px, 58svh); aspect-ratio: 1; margin-inline: auto; direction: ltr; }
+.is-ring .ring-svg { display: block; position: absolute; inset: 0; width: 100%; height: 100%; transform: scaleX(-1) rotate(-90deg); } /* from the top, counter-clockwise: forward in RTL */
+.ring-track { fill: none; stroke: rgba(238, 243, 240, .12); stroke-width: 2; vector-effect: non-scaling-stroke; }
+.ring-draw { fill: none; stroke: var(--acc); stroke-width: 3; stroke-linecap: round; vector-effect: non-scaling-stroke; }
+.is-ring .ring-dot { display: block; position: absolute; width: 22px; height: 22px; translate: -50% -50%; border-radius: 50%; background: var(--bg); box-shadow: inset 0 0 0 2px rgba(238, 243, 240, .3); transition: background-color .35s var(--e), box-shadow .35s var(--e); }
+.ring-dot[style*="--a:0"] { top: 1.67%; inset-inline-start: 50%; }
+.ring-dot[style*="--a:1"] { top: 50%; inset-inline-start: 1.67%; }
+.ring-dot[style*="--a:2"] { top: 98.33%; inset-inline-start: 50%; }
+.ring-dot[style*="--a:3"] { top: 50%; inset-inline-start: 98.33%; }
+.is-ring .ring-dot.on { background: var(--acc); box-shadow: 0 0 0 6px var(--acc-12), 0 0 18px rgba(0, 255, 6, .55); }
+.is-ring .ring-steps { position: absolute; inset: 0; display: block; max-width: none; direction: rtl; }
+.is-ring .rs { position: absolute; inset: 0; display: grid; align-content: center; justify-items: center; gap: 12px; padding: 17%; text-align: center; opacity: 0; transform: translateY(12px); transition: opacity .35s var(--e), transform .35s var(--e); }
+.is-ring .rs.on { opacity: 1; transform: none; }
+.is-ring .rs p { max-width: 30ch; margin-inline: auto; }
 
 /* ---------- 09 the closer (MV:ft1) with the short form ---------- */
 .close { position: relative; padding: var(--sec-loose) var(--gutter) var(--sec); background: radial-gradient(46% 42% at 78% 50%, rgba(0, 255, 6, .075), rgba(0, 255, 6, 0)); } /* the glow dies before the edges: no line at the top, none at the footer */
@@ -634,14 +661,14 @@ html.a11y-spacing p, html.a11y-spacing li { line-height: 1.9 !important; word-sp
 html.a11y-still *, html.a11y-still *::before, html.a11y-still *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
 
 /* ---------- the page opening: hidden only while the opening can run (html.open-anim, set in the head); shown anyway after 2.5s ---------- */
-.open-anim [data-open], .open-anim .hc-line, .open-anim .hc-fill, .open-anim .hc-dot { opacity: 0; animation: open-failsafe 0s 2.5s forwards; }
+.open-anim [data-open], .open-anim .hc-line, .open-anim .hc-fill, .open-anim .hc-dot, .open-anim .hd-pill, .open-anim .peek { opacity: 0; animation: open-failsafe 0s 2.5s forwards; }
 @keyframes open-failsafe { to { opacity: 1; } }
 
 /* ---------- reduced motion: final states, nothing moves by itself ---------- */
 @media (prefers-reduced-motion: reduce) {
   .js .rv { opacity: 1; animation: none; }
   .shine::after, .live i { animation: none; }
-  .btn, .peek, .tl-row, .co-stack, .b-dist i, .vt-dot, .vt-step h3, .hd, .drawer-panel { transition: none; }
+  .btn, .peek, .tl-row, .co-stack, .b-dist i, .ring-dot, .rs, .hd, .drawer-panel { transition: none; }
   .dlg[open] { animation: none; }
 }
 
