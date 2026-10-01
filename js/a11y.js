@@ -1,13 +1,10 @@
-/* Accessibility toolbar (design-dna library/behaviors.md B19, ת"י 5568). Built here from one shared file so it is on
-   every page: (from the Profix build, where it was first missing from the inner pages).
-   The floating link to the statement stays in the HTML (it works without JS); this script turns it into the button. */
+/* The accessibility toolbar (library/behaviors.md B19, ת"י 5568), built from one shared file so it is on every page.
+   The floating link to the statement stays in the HTML (it works without scripts); this turns it into the button. */
 (function () {
   "use strict";
   var html = document.documentElement, KEY = "momentum-a11y";
   var fab = document.querySelector(".fab-a11y"); if (!fab) return;
-  var MODES = [
-    ["contrast", "ניגודיות גבוהה"], ["gray", "גווני אפור"], ["invert", "היפוך צבעים"], ["links", "הדגשת קישורים"],
-    ["font", "גופן קריא"], ["spacing", "ריווח שורות"], ["still", "עצירת אנימציות"]];
+  var MODES = [["contrast", "ניגודיות גבוהה"], ["gray", "גווני אפור"], ["invert", "היפוך צבעים"], ["links", "הדגשת קישורים"], ["font", "גופן קריא"], ["spacing", "ריווח שורות"], ["still", "עצירת אנימציות"]];
   var SCALES = [1, 1.12, 1.25, 1.4];
   var saved = {}; try { saved = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) {}
   saved.scale = saved.scale || 0;
@@ -34,9 +31,8 @@
       var on = !!saved[m[0]]; html.classList.toggle("a11y-" + m[0], on);
       var b = panel.querySelector('[data-mode="' + m[0] + '"]'); if (b) b.setAttribute("aria-pressed", String(on));
     });
-    // "stop animations" reaches what CSS cannot: the video, and GSAP's timelines
-    document.dispatchEvent(new CustomEvent("a11y:still", { detail: !!saved.still }));
-    if (window.gsap) { if (saved.still) gsap.globalTimeline.pause(); else gsap.globalTimeline.resume(); }
+    // "stop animations" reaches what CSS cannot: GSAP's timelines
+    if (window.gsap) { if (saved.still) window.gsap.globalTimeline.pause(); else window.gsap.globalTimeline.resume(); }
     try { localStorage.setItem(KEY, JSON.stringify(saved)); } catch (e) {}
   }
   function open(o) {
@@ -51,7 +47,7 @@
   panel.querySelectorAll("[data-mode]").forEach(function (b) {
     b.addEventListener("click", function () {
       var k = b.getAttribute("data-mode"); saved[k] = !saved[k];
-      if (k === "gray" && saved.gray) saved.invert = false; if (k === "invert" && saved.invert) saved.gray = false; // one filter at a time
+      if (k === "gray" && saved.gray) saved.invert = false; if (k === "invert" && saved.invert) saved.gray = false;
       apply();
     });
   });
@@ -59,5 +55,5 @@
     b.addEventListener("click", function () { saved.scale = Math.max(0, Math.min(SCALES.length - 1, saved.scale + (+b.getAttribute("data-size")))); apply(); });
   });
   panel.querySelector("[data-reset]").addEventListener("click", function () { saved = { scale: 0 }; apply(); });
-  addEventListener("load", apply); apply();
+  apply();
 })();

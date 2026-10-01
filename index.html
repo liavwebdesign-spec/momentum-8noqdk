@@ -1,380 +1,514 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="he" dir="rtl">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>מומנטום · תכנון פיננסי עם הבנה של שוק ההון</title>
+<meta name="description" content="ליווי אישי שמחבר בין שוק ההון, החסכונות והשאיפות שלכם. תיקי השקעות, חיסכון פיננסי, מוצרים מובנים וקרנות גידור. מתן משה, מומנטום.">
 <meta name="robots" content="noindex, nofollow">
-<meta name="theme-color" content="#070A09">
-<title>מומנטום | מתן משה, סוכן ביטוח פנסיוני</title>
-<meta name="description" content="פנסיה, קופות גמל והשתלמות, ולצידן קרנות גידור בנאמנות ומוצרים מובנים. בדקו עם נתוני משרד האוצר איפה הקופה שלכם עומדת מול כל השוק.">
+<meta name="theme-color" content="#ffffff">
 <link rel="icon" href="images/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="fonts/Elkanah-ExtraBold.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" href="fonts/GoogleSans-Hebrew.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preconnect" href="https://data.gov.il" crossorigin>
-<link rel="stylesheet" href="site.css?v=7a7351ff">
-<script>document.documentElement.classList.add("js");if(!matchMedia("(prefers-reduced-motion: reduce)").matches&&!/[?&]edit=1/.test(location.search))document.documentElement.classList.add("open-anim")</script>
+<link rel="stylesheet" href="site.css?v=m2-1">
+<script>
+  /* the progressive-enhancement gate (engine/motion.md 2), and the page opening only when motion is allowed */
+  (function () {
+    var h = document.documentElement, still = false;
+    h.classList.add("js");
+    try { still = !!(JSON.parse(localStorage.getItem("momentum-a11y") || "{}").still); } catch (e) {}
+    if (true && !still && !matchMedia("(prefers-reduced-motion: reduce)").matches) h.classList.add("open-anim");
+  })();
+</script>
 </head>
-<body data-page="index">
-<div class="aura" aria-hidden="true"><i></i><i></i></div>
-<a class="skip" href="#main">דילוג לתוכן</a>
+<body>
+<a class="hskip" href="#main">דילוג לתוכן</a>
 <header class="hd" id="hd">
-  <div class="hd-pill glass">
-    <a class="hd-logo" href="index.html" aria-label="מומנטום, לעמוד הבית"><span class="brand "><svg class="brand-m" viewBox="0 0 350 178" aria-hidden="true" focusable="false"><path fill="currentColor" d="M151 0H209V178H151V82L69 178H0Z"/><path fill="currentColor" d="M291 0H350V178H292V82L209 178V96.7Z"/></svg><span class="brand-t">מומנטום</span></span></a>
-    <nav class="hd-nav" aria-label="ראשי"><a class="hd-link" href="index.html#terminal">איפה אתם עומדים</a><a class="hd-link" href="index.html#services">שירותים</a><a class="hd-link" href="index.html#about">מי אנחנו</a><a class="hd-link" href="index.html#calc">מחשבון</a></nav>
-    <a class="hd-login" href="https://portal.roeto.co.il/Clientinfo/login" target="_blank" rel="noopener"><svg class="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.8a3.5 3.5 0 0 1 7 0v2.7"/></svg><span>כניסה ללקוחות</span></a>
-    <a class="btn btn-primary btn-sm hd-cta" href="https://wa.me/972542908737?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9E%D7%AA%D7%9F%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%20%D7%9E%D7%95%D7%9E%D7%A0%D7%98%D7%95%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%99%D7%97%D7%94." target="_blank" rel="noopener">לשיחה עם מתן</a>
-    <button class="burger" type="button" aria-expanded="false" aria-controls="drawer" aria-label="פתיחת התפריט"><span></span><span></span></button>
+  <div class="hd-pill">
+    <a class="logo" href="#top" aria-label="מומנטום, לעמוד הבית"><span class="wm" lang="en">Momentum</span><svg class="logo-arrow" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 11.2 21 3l-7.6 18-2.3-7.6z"/></svg></a>
+    <nav class="hd-nav" aria-label="ראשי">
+      <a class="hlink" href="#solutions">פתרונות השקעה</a>
+      <a class="hlink" href="#returns">השוואת תשואות</a>
+      <div class="hd-sub" data-sub>
+        <button class="hlink hd-sub-btn" type="button" aria-expanded="false" aria-controls="sub-exp">המומחיות שלנו<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <ul class="hd-sub-list" id="sub-exp">
+          <li><a href="#expertise" data-open-dlg="exp-planning">תכנון פיננסי</a></li>
+          <li><a href="#expertise" data-open-dlg="exp-wealth">ניהול עושר</a></li>
+          <li><a href="#expertise" data-open-dlg="exp-pension">תכנון פנסיוני וביטוחי</a></li>
+          <li><a href="#expertise" data-open-dlg="exp-business">ייעוץ עסקי</a></li>
+          <li><a href="#expertise" data-open-dlg="exp-realestate">נדל"ן</a></li>
+        </ul>
+      </div>
+      <a class="hlink" href="#knowledge">מרכז הידע</a>
+      <a class="hlink" href="#about">אודות</a>
+    </nav>
+    <a class="btn shine hd-cta" href="#contact">בואו נכיר</a>
+    <button class="burger" type="button" aria-label="פתיחת תפריט" aria-expanded="false" aria-controls="md"><i></i><i></i><i></i></button>
   </div>
 </header>
-<div class="drawer" id="drawer" inert>
-  <div class="drawer-scrim" data-close></div>
-  <nav class="drawer-panel" aria-label="תפריט">
-    <div class="drawer-top"><span class="brand "><svg class="brand-m" viewBox="0 0 350 178" aria-hidden="true" focusable="false"><path fill="currentColor" d="M151 0H209V178H151V82L69 178H0Z"/><path fill="currentColor" d="M291 0H350V178H292V82L209 178V96.7Z"/></svg><span class="brand-t">מומנטום</span></span><button class="drawer-x" type="button" data-close aria-label="סגירת התפריט"><span></span><span></span></button></div>
-    <ul class="drawer-list"><li style="--i:0"><a href="index.html#terminal">איפה אתם עומדים</a></li><li style="--i:1"><a href="index.html#services">שירותים</a></li><li style="--i:2"><a href="index.html#about">מי אנחנו</a></li><li style="--i:3"><a href="index.html#calc">מחשבון</a></li><li style="--i:4"><a href="index.html#process">איך עובדים</a></li></ul>
-    <div class="drawer-foot">
-      <a class="btn btn-primary btn-block" href="https://wa.me/972542908737?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9E%D7%AA%D7%9F%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%20%D7%9E%D7%95%D7%9E%D7%A0%D7%98%D7%95%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%99%D7%97%D7%94." target="_blank" rel="noopener"><svg class="i-wa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.2 21.8l5.1-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.9 2.3 1 2.5c.1.2 1.7 2.6 4.2 3.6 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.4-.2Z"/></svg>לשיחה עם מתן</a>
-      <a class="drawer-login" href="https://portal.roeto.co.il/Clientinfo/login" target="_blank" rel="noopener"><svg class="i-lock" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="5" y="10.5" width="14" height="10" rx="2.5"/><path d="M8.5 10.5V7.8a3.5 3.5 0 0 1 7 0v2.7"/></svg>כניסה ללקוחות</a>
+
+<div class="md" id="md" role="dialog" aria-modal="true" aria-label="תפריט">
+  <div class="md-scrim"></div>
+  <nav class="md-panel" aria-label="ניווט ראשי">
+    <div class="md-top"><span class="logo"><span class="wm" lang="en">Momentum</span><svg class="logo-arrow" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 11.2 21 3l-7.6 18-2.3-7.6z"/></svg></span><button class="md-close" type="button" aria-label="סגירת תפריט"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+    <ul>
+      <li class="md-item"><a class="md-link" href="#solutions"><small>01</small>פתרונות השקעה</a></li>
+      <li class="md-item"><a class="md-link" href="#returns"><small>02</small>השוואת תשואות</a></li>
+      <li class="md-item"><a class="md-link" href="#expertise"><small>05</small>המומחיות שלנו</a></li>
+      <li class="md-item"><a class="md-link" href="#markets"><small>06</small>שווקים</a></li>
+      <li class="md-item"><a class="md-link" href="#about"><small>07</small>אודות</a></li>
+      <li class="md-item"><a class="md-link" href="#knowledge"><small>08</small>מרכז הידע</a></li>
+      <li class="md-item"><a class="md-link" href="#tools"><small>09</small>מחשבון</a></li>
+    </ul>
+    <div class="md-cta">
+      <a class="btn" href="#contact">בואו נכיר</a>
+      <a class="btn b2" href="https://portal.roeto.co.il/Clientinfo/login" target="_blank" rel="noopener">כניסה ללקוחות</a>
     </div>
   </nav>
 </div>
+
 <main id="main" tabindex="-1">
-<!-- ============ 01 HERO (MV:h1, centered, with the terminal peeking from below). The trend line behind the glass is real
-     data (MV:g126): the asset-weighted average of the general track of the study funds, 60 months, from gemelnet. The path
-     is written by build.mjs from data/hero-series.json, so it is there without JS ============ -->
-<section class="hero" id="top" aria-labelledby="hero-h" data-cta-origin>
-  <div class="hero-chart" aria-hidden="true">
-    <svg viewBox="0 0 1600 600" preserveAspectRatio="none">
-      <defs><linearGradient id="hc-g" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#00FF06" stop-opacity=".16"/><stop offset="1" stop-color="#00FF06" stop-opacity="0"/></linearGradient></defs>
-      <g class="hc-grid"></g>
-      <path class="hc-fill" d="M0.0 512.9 L25.1 494.1 L50.2 492.6 L75.3 480.2 L100.3 494.5 L125.4 500.6 L150.5 495.3 L175.6 507.2 L200.7 526.1 L225.8 546.1 L250.8 521.9 L275.9 531.0 L301.0 560.0 L326.1 547.2 L351.2 537.9 L376.3 551.3 L401.4 534.9 L426.4 544.7 L451.5 542.0 L476.6 531.0 L501.7 524.3 L526.8 511.3 L551.9 492.7 L576.9 494.2 L602.0 504.5 L627.1 522.5 L652.2 499.7 L677.3 481.6 L702.4 479.5 L727.5 463.3 L752.5 445.0 L777.6 456.2 L802.7 445.3 L827.8 436.8 L852.9 427.0 L878.0 419.1 L903.1 403.4 L928.1 402.0 L953.2 384.6 L978.3 380.0 L1003.4 367.9 L1028.5 369.7 L1053.6 378.6 L1078.6 371.8 L1103.7 350.9 L1128.8 322.0 L1153.9 312.1 L1179.0 302.1 L1204.1 282.6 L1229.2 269.1 L1254.2 259.5 L1279.3 250.6 L1304.4 230.6 L1329.5 223.1 L1354.6 246.3 L1379.7 205.7 L1404.7 183.0 L1429.8 189.5 L1454.9 194.1 L1480.0 180.0 L1480 600 L0 600 Z"/>
-      <path class="hc-line" d="M0.0 512.9 L25.1 494.1 L50.2 492.6 L75.3 480.2 L100.3 494.5 L125.4 500.6 L150.5 495.3 L175.6 507.2 L200.7 526.1 L225.8 546.1 L250.8 521.9 L275.9 531.0 L301.0 560.0 L326.1 547.2 L351.2 537.9 L376.3 551.3 L401.4 534.9 L426.4 544.7 L451.5 542.0 L476.6 531.0 L501.7 524.3 L526.8 511.3 L551.9 492.7 L576.9 494.2 L602.0 504.5 L627.1 522.5 L652.2 499.7 L677.3 481.6 L702.4 479.5 L727.5 463.3 L752.5 445.0 L777.6 456.2 L802.7 445.3 L827.8 436.8 L852.9 427.0 L878.0 419.1 L903.1 403.4 L928.1 402.0 L953.2 384.6 L978.3 380.0 L1003.4 367.9 L1028.5 369.7 L1053.6 378.6 L1078.6 371.8 L1103.7 350.9 L1128.8 322.0 L1153.9 312.1 L1179.0 302.1 L1204.1 282.6 L1229.2 269.1 L1254.2 259.5 L1279.3 250.6 L1304.4 230.6 L1329.5 223.1 L1354.6 246.3 L1379.7 205.7 L1404.7 183.0 L1429.8 189.5 L1454.9 194.1 L1480.0 180.0"/>
-    </svg>
-    <span class="hc-dot" style="--x:92.50%;--y:30.00%"><span class="hc-tag"><b>+41.8%</b><small>קרנות השתלמות, מסלול כללי, 60 חודשים</small></span></span>
+
+<section class="hero" id="top">
+  <p class="kicker eyebrow lad l1" lang="en">MOMENTUM · FINANCIAL PERSPECTIVE</p>
+  <h1 class="lad l2"><span>לראות רחוק.</span> <span>להבין לעומק.</span> <em>להשקיע מתוך ידע.</em></h1>
+  <p class="lead lad l3">ההון שצברתם ראוי לתמונה רחבה. ליווי אישי שמחבר בין שוק ההון, החסכונות והשאיפות שלכם.</p>
+  <div class="ctas lad l4">
+    <a class="btn lg shine" data-cta href="#contact">לשיחת היכרות</a>
+    <a class="lnk" href="#returns">לבחינת התשואות <svg class="down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14m-6-6 6 6 6-6"/></svg></a>
   </div>
-  <div class="hero-in">
-    <p class="kicker hero-kicker" data-open><svg class="kicker-m" viewBox="0 0 350 178" aria-hidden="true" focusable="false"><path fill="currentColor" d="M151 0H209V178H151V82L69 178H0Z"/><path fill="currentColor" d="M291 0H350V178H292V82L209 178V96.7Z"/></svg>מומנטום · סוכנות לביטוח פנסיוני</p>
-    <h1 id="hero-h" data-open data-lines><span>סוכן פנסיוני</span> <span>שחושב כמו <em>משקיע.</em></span></h1>
-    <p class="lead hero-lead" data-open>פנסיה, קופות גמל והשתלמות, ולצידן קרנות גידור בנאמנות ומוצרים מובנים. מתן משה מלווה חוסכים ומשקיעים מאז 2001.</p>
-    <div class="hero-cta" data-open>
-      <a class="btn btn-primary btn-lg shine" href="https://wa.me/972542908737?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9E%D7%AA%D7%9F%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%20%D7%9E%D7%95%D7%9E%D7%A0%D7%98%D7%95%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%99%D7%97%D7%94." target="_blank" rel="noopener"><svg class="i-wa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.2 21.8l5.1-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.9 2.3 1 2.5c.1.2 1.7 2.6 4.2 3.6 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.4-.2Z"/></svg>לשיחה עם מתן</a>
-      <a class="btn btn-glass btn-lg" href="#terminal">איפה הקופה שלכם עומדת<svg class="i-down" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14m-6-6 6 6 6-6"/></svg></a>
-    </div>
-  </div>
+  <p class="audience lad l5">לחוסכים ולמשפחות עם הון של כ-500 אלף ₪ ומעלה</p>
 </section>
-<div class="peek-slot">
-  <!-- the peek: a real preview of the terminal, filled from the same data. It rises as the page scrolls (a curtain) -->
-  <a class="peek glass" href="#terminal" data-peek aria-label="לדירוג המלא של הקופות">
-    <span class="peek-top"><span class="live"><i></i>דירוג חי</span><span data-peek-title>קרנות השתלמות · מסלול כללי · ממוצע שנתי, 5 שנים</span><span class="peek-src" data-peek-src>גמל נט</span></span>
-    <ol class="peek-rows" data-peek-rows>
-      <li><span class="pr-n">01</span><span class="pr-name">טוען את נתוני משרד האוצר</span><span class="pr-v">...</span></li>
-      <li><span class="pr-n">02</span><span class="pr-name">&nbsp;</span><span class="pr-v">&nbsp;</span></li>
-      <li><span class="pr-n">03</span><span class="pr-name">&nbsp;</span><span class="pr-v">&nbsp;</span></li>
-    </ol>
-  </a>
+
+<div class="peek-wrap" aria-label="מפת השוק">
+  <div class="peek">
+    <div class="peek-bar"><span class="live"><i aria-hidden="true"></i><b>השוק בתנועה.</b> התוכנית שלכם במרכז.</span><span class="peek-src">מפת S&amp;P 500 לפי סקטורים · TradingView</span></div>
+    <div class="peek-map tv" data-tv="heatmap"><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div></div><p class="tv-fallback">מפת השוק נטענת מ-TradingView. אם היא לא מופיעה, <a href="https://www.tradingview.com/heatmap/stock/" target="_blank" rel="noopener">אפשר לראות אותה באתר הספק</a>.</p></div>
+  </div>
 </div>
 
-<!-- ============ 02 BREATH (C14 monologue). The statement is painted word by word (MV:g48) and, behind it, four real
-     tracks of the study funds draw themselves on one scale: the market the sentence speaks of, quieter than the hero ============ -->
-<section class="breath" data-comp="C14" aria-label="הגישה שלנו">
-  <div class="breath-chart" aria-hidden="true"><svg viewBox="0 0 1600 600" preserveAspectRatio="none"><path class="bt bt-bonds" d="M0.0 560.0 L51.6 556.7 L103.2 548.7 L154.8 552.4 L206.5 548.3 L258.1 544.3 L309.7 537.0 L361.3 530.9 L412.9 522.9 L464.5 522.8 L516.1 514.7 L567.7 511.8 L619.4 508.0 L671.0 504.5 L722.6 504.6 L774.2 500.1 L825.8 496.7 L877.4 484.6 L929.0 481.2 L980.6 475.2 L1032.3 466.7 L1083.9 459.6 L1135.5 455.8 L1187.1 453.4 L1238.7 448.2 L1290.3 445.1 L1341.9 454.0 L1393.5 442.9 L1445.2 434.2 L1496.8 430.6 L1548.4 431.3 L1600.0 426.7"/><path class="bt bt-general" d="M0.0 559.9 L51.6 547.0 L103.2 531.6 L154.8 540.7 L206.5 531.6 L258.1 525.1 L309.7 516.6 L361.3 509.9 L412.9 496.8 L464.5 495.6 L516.1 481.6 L567.7 477.9 L619.4 467.9 L671.0 469.0 L722.6 476.3 L774.2 470.4 L825.8 453.4 L877.4 429.7 L929.0 422.0 L980.6 413.7 L1032.3 397.5 L1083.9 386.4 L1135.5 378.2 L1187.1 371.3 L1238.7 354.7 L1290.3 349.9 L1341.9 369.9 L1393.5 336.5 L1445.2 318.6 L1496.8 323.5 L1548.4 327.1 L1600.0 314.9"/><path class="bt bt-sp" d="M0.0 546.5 L51.6 525.3 L103.2 482.1 L154.8 496.8 L206.5 475.1 L258.1 433.2 L309.7 424.0 L361.3 432.3 L412.9 400.5 L464.5 403.9 L516.1 377.5 L567.7 391.7 L619.4 382.5 L671.0 411.6 L722.6 419.2 L774.2 441.7 L825.8 417.6 L877.4 410.9 L929.0 385.2 L980.6 385.2 L1032.3 363.1 L1083.9 355.3 L1135.5 351.8 L1187.1 368.2 L1238.7 383.9 L1290.3 382.1 L1341.9 418.0 L1393.5 391.0 L1445.2 387.2 L1496.8 347.6 L1548.4 328.3 L1600.0 319.4"/><path class="bt bt-stocks" d="M0.0 557.9 L51.6 528.5 L103.2 501.4 L154.8 521.9 L206.5 502.5 L258.1 486.6 L309.7 475.9 L361.3 468.9 L412.9 444.3 L464.5 443.5 L516.1 416.6 L567.7 413.8 L619.4 390.8 L671.0 401.9 L722.6 425.2 L774.2 419.9 L825.8 376.1 L877.4 331.8 L929.0 313.9 L980.6 303.6 L1032.3 271.1 L1083.9 249.5 L1135.5 236.8 L1187.1 222.4 L1238.7 182.0 L1290.3 174.5 L1341.9 220.8 L1393.5 138.0 L1445.2 100.0 L1496.8 128.4 L1548.4 137.4 L1600.0 113.4"/></svg></div>
-  <div class="breath-in">
-    <p class="say">רוב האנשים פוגשים את הפנסיה שלהם פעם בשנה, בדוח שאף אחד לא קורא. אצלנו הקופה היא חלק מהתיק, ובודקים אותה כמו השקעה: <em>מול השוק, מול הסיכון, ומול מה שהיא עולה לכם.</em></p>
-    <p class="breath-src"><span class="bl bl-general">כללי</span><span class="bl bl-sp">S&amp;P 500</span><span class="bl bl-stocks">מניות</span><span class="bl bl-bonds">אג״ח</span><span class="bl-t">קרנות השתלמות, ינואר 2024 עד אוגוסט 2026. מקור: גמל נט.</span></p>
+<section class="ticker" aria-label="על המסכים">
+  <span class="ticker-l">על המסכים</span>
+  <div class="tv tv-tape" data-tv="tape"><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div></div></div>
+</section>
+
+<section class="sec sol" id="solutions" aria-labelledby="sol-h" data-comp="C5">
+  <div class="head split reveal">
+    <div><p class="kicker"><b>01</b> · מרחב האפשרויות</p>
+    <h2 id="sol-h">עולם של השקעות. נקודת מבט אחת: <em>שלכם.</em></h2></div>
+    <p class="lead">בוחנים כל חלופה לפי תפקידה בתמונה הכוללת. מבנה, סיכון, נזילות ועלות, לפני החלטה.</p>
+  </div>
+  <div class="sol-grid">
+    <article class="sol-card feat reveal" style="--i:0">
+      <span class="no" lang="en">01 / PORTFOLIOS</span>
+      <h3>תיקי השקעות</h3>
+      <p>מדיניות השקעה שמחברת בין היעדים שלכם, החשיפות והיכולת לשאת סיכון. מתחילים במבנה התיק ובבחינת הגוף המנהל.</p>
+      <ul class="tags"><li>הקצאת נכסים</li><li>פיזור גלובלי</li><li>בקרה</li></ul>
+      <button class="lnk" type="button" data-open-dlg="g-portfolios">מה חשוב לבדוק בתיק מנוהל? <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button>
+    </article>
+    <article class="sol-card reveal" style="--i:1">
+      <span class="no" lang="en">02 / SAVINGS</span>
+      <h3>חיסכון פיננסי</h3>
+      <p>קופות גמל, קרנות השתלמות ופוליסות חיסכון. בוחנים את המסלולים, העלויות וההחזקות שמעבר לשם הגוף.</p>
+      <a class="lnk" href="#returns">להשוואת התשואות <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></a>
+    </article>
+    <article class="sol-card reveal" style="--i:2">
+      <span class="no" lang="en">03 / STRUCTURED</span>
+      <h3>מוצרים מובנים</h3>
+      <p>מפרקים את מנגנון התשלום: נכס הבסיס, תנאי הקופון, החסמים והחשיפה למנפיק. מבינים גם את תרחיש ההפסד.</p>
+      <button class="lnk" type="button" data-open-dlg="g-structured">למדריך המוצרים המובנים <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button>
+    </article>
+    <article class="sol-card reveal" style="--i:3">
+      <span class="no" lang="en">04 / HEDGE FUNDS</span>
+      <h3>קרנות גידור</h3>
+      <p>בוחנים את האסטרטגיה, המינוף, דמי ההצלחה ומועדי הפדיון. ההבדלים בין קרנות מתחילים הרבה לפני התשואה.</p>
+      <button class="lnk" type="button" data-open-dlg="g-hedge">למדריך קרנות הגידור <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button>
+    </article>
+  </div>
+  <p class="fine reveal">הצגת תחומים לצורך היכרות ובחינה אינה הצעה למוצר מסוים. השירות והזכאות נקבעים לפי הצרכים, תנאי המוצר והרישיון הרלוונטי; ניהול תיק בפועל מחייב התקשרות עם גורם מורשה.</p>
+</section>
+
+<section class="sec deep returns" id="returns" aria-labelledby="rank-h" data-axis="start" data-comp="C11">
+  <div class="head split reveal">
+    <div><p class="kicker"><b>02</b> · הנתונים שמאחורי החיסכון</p>
+    <h2 id="rank-h">משווים תשואות. מסתכלים <em>מעבר לדירוג.</em></h2></div>
+    <p class="data-date"><span><i aria-hidden="true"></i>מקור: רשות שוק ההון · גמל נט</span><b>נתוני אוגוסט 2026</b></p>
+  </div>
+  <div class="frame reveal">
+    <div class="rk" data-rank>
+      <div class="rk-side">
+        <p class="rk-intro">בחרו סוג קופה, מסלול ותקופה, וכל הקופות שפתוחות לציבור מסתדרות לפי התשואה, מהראשונה עד האחרונה. לחיצה על שורה מסמנת אותה כשלכם.</p>
+        <div class="ctl"><span class="ctl-l" id="l-kind">מוצר</span>
+          <div class="seg" role="group" aria-labelledby="l-kind" data-seg="kind"><button type="button" data-v="hish" aria-pressed="true">קרנות השתלמות</button><button type="button" data-v="invest" aria-pressed="false">גמל להשקעה</button><button type="button" data-v="gemel" aria-pressed="false">קופות גמל</button></div></div>
+        <div class="ctl"><span class="ctl-l" id="l-track">סוג מסלול</span>
+          <div class="seg four" role="group" aria-labelledby="l-track" data-seg="track"><button type="button" data-v="general" aria-pressed="true">כללי</button><button type="button" data-v="stocks" aria-pressed="false">מניות</button><button type="button" data-v="sp" aria-pressed="false">S&amp;P 500</button><button type="button" data-v="bonds" aria-pressed="false">אג"ח</button></div></div>
+        <div class="ctl"><span class="ctl-l" id="l-period">תקופה</span>
+          <div class="seg" role="group" aria-labelledby="l-period" data-seg="period"><button type="button" data-v="ytd" aria-pressed="false">מתחילת השנה</button><button type="button" data-v="y3" aria-pressed="false">3 שנים</button><button type="button" data-v="y5" aria-pressed="true">5 שנים</button></div></div>
+        <div class="ctl sel"><label class="ctl-l" for="pick">הקופה שלכם</label>
+          <select id="pick" data-pick><option value="">לבחור מהרשימה</option><option value="13229">אינפיניטי השתלמות כללי</option><option value="1093">אלטשולר שחם השתלמות כללי</option><option value="1290">אלטשולר שחם השתלמות כללי ב'</option><option value="962">אנליסט השתלמות כללי</option><option value="964">הפניקס השתלמות כללי</option><option value="154">הראל השתלמות כללי</option><option value="1162">ילין לפידות קרן השתלמות מסלול כללי</option><option value="456">כלל השתלמות כללי</option><option value="579">מגדל השתלמות מסלול כללי</option><option value="12535">מור קרן השתלמות לשכירים ולעצמאים - כללי</option><option value="880">מיטב השתלמות כללי</option><option value="828">מנורה מבטחים השתלמות מסלול כללי</option></select></div>
+      </div>
+      <div class="rk-main">
+        <div class="readout" aria-live="polite" data-readout><span class="flap" data-r-flap aria-hidden="true"><span class="sf-t">0</span><span class="sf-t">1</span></span><span class="of" data-r-of>מקום ראשון מתוך 12 במסלול הכללי</span><span class="who" data-r-who>אינפיניטי השתלמות כללי</span></div>
+        <p class="readout-note" data-note>ממוצע שנתי של <b>8.66%</b> בחמש השנים האחרונות, דמי ניהול <b>0.60%</b>. בחרו את הקופה שלכם ברשימה או בטבלה.</p>
+        <div class="rk-cols" aria-hidden="true"><span>מקום</span><span>הגוף והמסלול</span><span data-col>ממוצע שנתי</span><span>דמי ניהול*</span></div>
+        <ol class="rk-list" id="rk-list" data-list><li data-flip-id="13229"><button class="rk-row" type="button" data-id="13229" aria-pressed="false" aria-label="מקום 1: אינפיניטי השתלמות כללי, אינפיניטי השתלמות, גמל ופנסיה. ממוצע שנתי 8.66%, דמי ניהול 0.60%"><span class="r">1</span><span class="n"><b><span class="nm">אינפיניטי</span><span class="mine">שלכם</span></b><small>אינפיניטי השתלמות כללי</small></span><span class="v">8.66%</span><span class="f">0.60%</span></button></li><li data-flip-id="12535"><button class="rk-row" type="button" data-id="12535" aria-pressed="false" aria-label="מקום 2: מור קרן השתלמות לשכירים ולעצמאים - כללי, מור גמל ופנסיה. ממוצע שנתי 8.47%, דמי ניהול 0.70%"><span class="r">2</span><span class="n"><b><span class="nm">מור</span><span class="mine">שלכם</span></b><small>מור קרן השתלמות לשכירים ולעצמאים - כללי</small></span><span class="v">8.47%</span><span class="f">0.70%</span></button></li><li data-flip-id="962"><button class="rk-row" type="button" data-id="962" aria-pressed="false" aria-label="מקום 3: אנליסט השתלמות כללי, אנליסט קופות גמל. ממוצע שנתי 8.47%, דמי ניהול 0.62%"><span class="r">3</span><span class="n"><b><span class="nm">אנליסט</span><span class="mine">שלכם</span></b><small>אנליסט השתלמות כללי</small></span><span class="v">8.47%</span><span class="f">0.62%</span></button></li><li data-flip-id="880"><button class="rk-row" type="button" data-id="880" aria-pressed="false" aria-label="מקום 4: מיטב השתלמות כללי, מיטב גמל ופנסיה. ממוצע שנתי 8.06%, דמי ניהול 0.60%"><span class="r">4</span><span class="n"><b><span class="nm">מיטב</span><span class="mine">שלכם</span></b><small>מיטב השתלמות כללי</small></span><span class="v">8.06%</span><span class="f">0.60%</span></button></li><li data-flip-id="456"><button class="rk-row" type="button" data-id="456" aria-pressed="false" aria-label="מקום 5: כלל השתלמות כללי, כלל פנסיה וגמל. ממוצע שנתי 8.03%, דמי ניהול 0.54%"><span class="r">5</span><span class="n"><b><span class="nm">כלל</span><span class="mine">שלכם</span></b><small>כלל השתלמות כללי</small></span><span class="v">8.03%</span><span class="f">0.54%</span></button></li><li data-flip-id="964"><button class="rk-row" type="button" data-id="964" aria-pressed="false" aria-label="מקום 6: הפניקס השתלמות כללי, הפניקס פנסיה וגמל. ממוצע שנתי 8.00%, דמי ניהול 0.65%"><span class="r">6</span><span class="n"><b><span class="nm">הפניקס</span><span class="mine">שלכם</span></b><small>הפניקס השתלמות כללי</small></span><span class="v">8.00%</span><span class="f">0.65%</span></button></li><li data-flip-id="579"><button class="rk-row" type="button" data-id="579" aria-pressed="false" aria-label="מקום 7: מגדל השתלמות מסלול כללי, מגדל מקפת קרנות פנסיה וקופות גמל. ממוצע שנתי 7.66%, דמי ניהול 0.54%"><span class="r">7</span><span class="n"><b><span class="nm">מגדל</span><span class="mine">שלכם</span></b><small>מגדל השתלמות מסלול כללי</small></span><span class="v">7.66%</span><span class="f">0.54%</span></button></li><li data-flip-id="828"><button class="rk-row" type="button" data-id="828" aria-pressed="false" aria-label="מקום 8: מנורה מבטחים השתלמות מסלול כללי, מנורה מבטחים פנסיה וגמל. ממוצע שנתי 7.64%, דמי ניהול 0.63%"><span class="r">8</span><span class="n"><b><span class="nm">מנורה</span><span class="mine">שלכם</span></b><small>מנורה מבטחים השתלמות מסלול כללי</small></span><span class="v">7.64%</span><span class="f">0.63%</span></button></li><li data-flip-id="1162"><button class="rk-row" type="button" data-id="1162" aria-pressed="false" aria-label="מקום 9: ילין לפידות קרן השתלמות מסלול כללי, ילין לפידות ניהול קופות גמל. ממוצע שנתי 7.51%, דמי ניהול 0.68%"><span class="r">9</span><span class="n"><b><span class="nm">ילין לפידות</span><span class="mine">שלכם</span></b><small>ילין לפידות קרן השתלמות מסלול כללי</small></span><span class="v">7.51%</span><span class="f">0.68%</span></button></li><li data-flip-id="154"><button class="rk-row" type="button" data-id="154" aria-pressed="false" aria-label="מקום 10: הראל השתלמות כללי, הראל פנסיה וגמל. ממוצע שנתי 7.24%, דמי ניהול 0.60%"><span class="r">10</span><span class="n"><b><span class="nm">הראל</span><span class="mine">שלכם</span></b><small>הראל השתלמות כללי</small></span><span class="v">7.24%</span><span class="f">0.60%</span></button></li><li data-flip-id="1290"><button class="rk-row" type="button" data-id="1290" aria-pressed="false" aria-label="מקום 11: אלטשולר שחם השתלמות כללי ב', אלטשולר שחם גמל ופנסיה. ממוצע שנתי 6.47%, דמי ניהול 0.69%"><span class="r">11</span><span class="n"><b><span class="nm">אלטשולר שחם</span><span class="mine">שלכם</span></b><small>אלטשולר שחם השתלמות כללי ב'</small></span><span class="v">6.47%</span><span class="f">0.69%</span></button></li><li data-flip-id="1093"><button class="rk-row" type="button" data-id="1093" aria-pressed="false" aria-label="מקום 12: אלטשולר שחם השתלמות כללי, אלטשולר שחם גמל ופנסיה. ממוצע שנתי 6.05%, דמי ניהול 0.69%"><span class="r">12</span><span class="n"><b><span class="nm">אלטשולר שחם</span><span class="mine">שלכם</span></b><small>אלטשולר שחם השתלמות כללי</small></span><span class="v">6.05%</span><span class="f">0.69%</span></button></li></ol>
+        <button class="lnk rk-more" type="button" aria-expanded="false" aria-controls="rk-list" data-more hidden>להציג את כל 12 הקופות</button>
+      </div>
+    </div>
+  </div>
+  <div class="rk-notes reveal">
+    <p>תשואות נומינליות ברוטו, לפני דמי ניהול. מוצגים מסלולים המיועדים לכלל האוכלוסייה. תשואות עבר אינן מבטיחות תשואות עתידיות. אין להשוות מסלולים בעלי מדיניות וסיכון שונים על סמך התשואה בלבד.</p>
+    <p>*דמי ניהול שנתיים ממוצעים מצבירה, כפי שדווחו, ולא הצעה אישית. מקף מציין נתון חסר. <a href="https://data.gov.il/he/datasets/cma/gemelnet" target="_blank" rel="noopener">למאגר הרשמי</a> · <button class="txt" type="button" data-open-dlg="g-compare-returns">איך קוראים את ההשוואה?</button></p>
   </div>
 </section>
 
-<!-- ============ 03 THE TERMINAL (C11 split, sticky board). The signature: pick a fund type and a track, every fund in
-     Israel lines up from first to last, and the board flips like a trading board (MV:g100). Live from data.gov.il,
-     with data/gemelnet.json when the source does not answer ============ -->
-<section class="sec term" id="terminal" aria-labelledby="t-h">
-  <div class="sec-head">
-    <p class="kicker rv"><span class="k-n">01</span>איפה אתם עומדים</p>
-    <h2 id="t-h" class="rv">כל הקופות בשוק, ממקום ראשון עד אחרון.</h2>
-    <p class="lead rv">בחרו סוג קופה ומסלול, ומצאו את הקופה שלכם ברשימה. הדירוג נבנה עכשיו מנתוני גמל נט של משרד האוצר.</p>
-  </div>
-
-  <div class="term-controls rv" role="group" aria-label="בחירת קופה">
-    <div class="seg" data-seg="kind" role="radiogroup" aria-label="סוג הקופה">
-      <button type="button" role="radio" aria-checked="true" data-v="hish">קרן השתלמות</button>
-      <button type="button" role="radio" aria-checked="false" data-v="gemel">קופת גמל</button>
-      <button type="button" role="radio" aria-checked="false" data-v="invest">גמל להשקעה</button>
-    </div>
-    <div class="seg" data-seg="track" role="radiogroup" aria-label="מסלול">
-      <button type="button" role="radio" aria-checked="true" data-v="general">כללי</button>
-      <button type="button" role="radio" aria-checked="false" data-v="sp">S&amp;P 500</button>
-      <button type="button" role="radio" aria-checked="false" data-v="stocks">מניות</button>
-      <button type="button" role="radio" aria-checked="false" data-v="bonds">אג״ח</button>
-    </div>
-    <div class="seg" data-seg="period" role="radiogroup" aria-label="תקופה">
-      <button type="button" role="radio" aria-checked="false" data-v="ytd">מתחילת השנה</button>
-      <button type="button" role="radio" aria-checked="false" data-v="y3">3 שנים</button>
-      <button type="button" role="radio" aria-checked="true" data-v="y5">5 שנים</button>
-    </div>
-    <button class="pub" type="button" aria-pressed="true" data-public><i aria-hidden="true"></i>רק קופות שפתוחות לכולם</button>
-  </div>
-
-  <div class="term-grid" data-comp="C11">
-    <aside class="board glass" aria-labelledby="b-lab" data-board>
-      <p class="b-lab" id="b-lab" data-b-lab>המקום הראשון במסלול</p>
-      <div class="b-rank"><span class="sf" data-sf="rank" aria-hidden="true"></span><span class="b-of">מתוך <b data-b-total>0</b></span></div>
-      <div class="sr-only" aria-live="polite" data-b-sr></div>
-      <p class="b-name" data-b-name>&nbsp;</p>
-      <p class="b-co" data-b-co>&nbsp;</p>
-      <div class="b-yield"><b class="b-y stat" data-b-y>-</b><span class="b-y-lab" data-b-ylab>ממוצע שנתי, 5 שנים</span></div>
-      <dl class="b-stats">
-        <div><dt>דמי ניהול מצבירה</dt><dd class="stat" data-b-fee>-</dd></div>
-        <div><dt>מדד שארפ</dt><dd class="stat" data-b-sharpe>-</dd></div>
-        <div><dt>נכסים מנוהלים</dt><dd class="stat" data-b-assets>-</dd></div>
-      </dl>
-      <div class="b-dist" data-b-dist aria-hidden="true"></div>
-      <p class="b-dist-lab" aria-hidden="true"><span>התשואה הנמוכה במסלול</span><span>הגבוהה</span></p>
-    </aside>
-
-    <div class="term-list">
-      <div class="tl-search">
-        <label for="tl-q">חפשו את הקופה שלכם</label>
-        <div class="tl-q-in"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4 4"/></svg><input id="tl-q" type="search" placeholder="שם החברה או הקופה, למשל הראל" autocomplete="off" data-tl-q></div>
+<section class="sec port" id="portfolios" aria-labelledby="port-h" data-comp="C2">
+  <div class="port-grid">
+    <div class="port-t">
+      <div class="head reveal">
+        <p class="kicker"><b>03</b> · תיקי השקעות</p>
+        <h2 id="port-h">התיק הוא חלק מסיפור <em>גדול יותר.</em></h2>
       </div>
-      <div class="tl-head" aria-hidden="true"><span>מקום</span><span>קופה</span><span data-tl-col>ממוצע שנתי</span><span>דמי ניהול</span></div>
-      <ol class="tl" data-tl aria-label="דירוג הקופות"></ol>
-      <p class="tl-empty" data-tl-empty hidden>לא מצאנו קופה בשם הזה במסלול. נסו שם של חברה, או בחרו מסלול אחר.</p>
-      <button class="tl-more" type="button" data-tl-more hidden></button>
-      <p class="tl-note" data-tl-note>מקור: גמל נט, רשות שוק ההון, ביטוח וחיסכון. תשואות עבר אינן מבטיחות תשואות בעתיד, והדירוג אינו המלצה או ייעוץ.</p>
+      <p class="big reveal">מה התפקיד של כל נכס בתוכנית שלכם?</p>
+      <p class="body reveal">לצד התשואה, בוחנים את מקורות הסיכון, הנזילות והחפיפה לחסכונות האחרים. מדיניות ברורה מאפשרת להבין גם מתי לשנות וגם מתי להמשיך.</p>
+      <ul class="points reveal"><li>מטרות וטווח השקעה</li><li>חשיפות בארץ ובעולם</li><li>עלויות ושקיפות</li></ul>
+      <button class="lnk reveal" type="button" data-open-dlg="g-portfolios">למדריך תיקי השקעות <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button>
+    </div>
+    <div class="alloc reveal" data-alloc>
+      <div class="alloc-top"><span class="ctl-l" id="l-alloc">איך מבנה התיק משתנה?</span><span class="demo">המחשה בלבד</span></div>
+      <div class="seg" role="group" aria-labelledby="l-alloc"><button type="button" data-a="liquid" aria-pressed="false">דגש על נזילות</button><button type="button" data-a="balanced" aria-pressed="true">תמהיל משולב</button><button type="button" data-a="equity" aria-pressed="false">חשיפה מנייתית</button></div>
+      <div class="donut">
+        <svg viewBox="0 0 200 200" role="img" aria-labelledby="donut-t" data-donut><title id="donut-t">מניות 50%, אג"ח 40%, מזומן 10%</title><circle class="dn dn0" cx="100" cy="100" r="77" pathLength="100" stroke-dasharray="49.2 50.8" stroke-dashoffset="0"/><circle class="dn dn1" cx="100" cy="100" r="77" pathLength="100" stroke-dasharray="39.2 60.8" stroke-dashoffset="-50"/><circle class="dn dn2" cx="100" cy="100" r="77" pathLength="100" stroke-dasharray="9.2 90.8" stroke-dashoffset="-90"/></svg>
+        <div class="donut-c"><span>תמונה אחת</span><b>100%</b></div>
+      </div>
+      <ul class="alloc-legend" data-legend><li><i class="dn0"></i>מניות 50%</li><li><i class="dn1"></i>אג"ח 40%</li><li><i class="dn2"></i>מזומן 10%</li></ul>
+      <p class="alloc-note" data-anote>דוגמה לשילוב מניות, אג"ח ומזומן. החלוקה אינה מספרת לבדה את כל הסיכון: חשוב להבין ענפים, מטבעות, מח"מ ואיכות אשראי.</p>
+      <p class="fine">תמהילים להמחשת מבנה בלבד, ללא המלצה או התאמה לפרופיל סיכון. אין כאן תיק לקוח או התחייבות לתשואה.</p>
     </div>
   </div>
 </section>
 
-<!-- ============ 04 SERVICES (C15 two storeys): the core wide, four specialties under it. Each opens a drawer in the page
-     (no inner pages: ar02). The small visuals are drawn in code from the subject itself, never from an icon library ============ -->
-<section class="sec svc" id="services" aria-labelledby="s-h">
-  <div class="sec-head">
-    <p class="kicker rv"><span class="k-n">02</span>מה אנחנו עושים</p>
-    <h2 id="s-h" class="rv">מהקופה של כל חודש, ועד השקעות שרוב הסוכנים לא נוגעים בהן.</h2>
+<section class="sec tint adv" id="advanced" aria-labelledby="adv-h" data-comp="C15">
+  <div class="head split reveal">
+    <div><p class="kicker"><b>04</b> · מבינים את המבנה</p>
+    <h2 id="adv-h">ככל שהמוצר מורכב, ההסבר צריך להיות <em>ברור יותר.</em></h2></div>
+    <p class="lead">בוחנים איך נוצרת התשואה, מה יכול להשתבש ומתי הכסף זמין.</p>
   </div>
-  <div class="svc-grid" data-comp="C15">
-    <article class="svc-hero rv">
-      <div class="svc-hero-t">
-        <h3>תכנון פנסיוני, גמל והשתלמות</h3>
-        <p>ממפים את כל הכסף שלכם דרך המסלקה הפנסיונית: קרן פנסיה, קופות גמל, קרן השתלמות, ביטוח מנהלים ופוליסות חיסכון. כל קופה נבדקת מול המסלול שלה בשוק, ומה שלא עובד בשבילכם זז.</p>
-        <ul class="chips"><li>קרן פנסיה</li><li>קופות גמל</li><li>קרן השתלמות</li><li>גמל להשקעה</li><li>ביטוח מנהלים</li><li>דמי ניהול</li></ul>
-        <button class="lnk" type="button" data-dlg="pension">איך זה עובד<svg class="i-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button>
-      </div>
-      <div class="svc-hero-v" aria-hidden="true">
-        <p class="big-n"><b class="stat" data-count-funds>759</b><span>מסלולים</span></p>
-        <p class="big-sub">של <b data-count-cos>0</b> חברות מנהלות בהשוואה אחת, לפי הדיווח החודשי למשרד האוצר.</p>
-      </div>
+  <div class="adv-grid">
+    <article class="adv-card reveal" style="--i:0">
+      <div class="adv-top"><span lang="en">STRUCTURED PRODUCTS</span><span class="n">01</span></div>
+      <h3>מוצרים מובנים</h3>
+      <p>תשלום שנקבע מראש בנוסחה, ותוצאה שתלויה בתנאים. מתחילים בקריאת מסמכי המוצר ובבחינת החלופות.</p>
+      <div class="flow" aria-label="מבנה המוצר"><span>נכס בסיס</span><i aria-hidden="true">+</i><span>תנאי תשלום</span><i aria-hidden="true">+</i><span>סיכון מנפיק</span></div>
+      <details class="acc"><summary>מה חייבים להבין לפני השקעה?</summary>
+        <ul><li>מתי משולם הקופון, והאם הוא מותנה?</li><li>מה מפעיל חסם או פדיון מוקדם?</li><li>באילו תנאים אפשר לאבד מהקרן?</li><li>מה האפשרות לצאת לפני הפדיון?</li></ul></details>
+      <button class="btn b2" type="button" data-open-dlg="g-structured">למדריך המלא</button>
     </article>
-    <article class="svc-it rv">
-      <svg class="svc-v" viewBox="0 0 120 64" aria-hidden="true"><path class="v-mute" d="M4 40 L20 22 L34 46 L50 16 L66 50 L82 24 L98 44 L116 20"/><path class="v-acc" d="M4 40 L20 34 L34 38 L50 30 L66 34 L82 28 L98 30 L116 24"/></svg>
-      <h3>קרנות גידור בנאמנות</h3>
-      <p>אסטרטגיות של משקיעים מוסדיים, במבנה נאמנות, למי שעומד בתנאים.</p>
-      <button class="lnk" type="button" data-dlg="hedge">לפרטים<svg class="i-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button>
-    </article>
-    <article class="svc-it rv">
-      <svg class="svc-v" viewBox="0 0 120 64" aria-hidden="true"><path class="v-mute" d="M4 32 H116"/><path class="v-acc" d="M4 44 H56 L104 12 H116"/><circle class="v-dot" cx="56" cy="44" r="3.5"/></svg>
-      <h3>מוצרים מובנים (Structure)</h3>
-      <p>תרחישים שמוגדרים מראש: כמה מרוויחים, מתי, ומה קורה אם השוק יורד.</p>
-      <button class="lnk" type="button" data-dlg="structure">לפרטים<svg class="i-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button>
-    </article>
-    <article class="svc-it rv">
-      <svg class="svc-v" viewBox="0 0 120 64" aria-hidden="true"><path class="v-acc" d="M4 58 C30 56 52 40 72 16"/><path class="v-mute" d="M72 16 C84 22 100 38 116 56"/><circle class="v-dot" cx="72" cy="16" r="3.5"/></svg>
-      <h3>תכנון וליווי לפרישה</h3>
-      <p>מתי לפרוש, איך למשוך, וכמה מס נשאר אצלכם. כולל קיבוע זכויות.</p>
-      <button class="lnk" type="button" data-dlg="retire">לפרטים<svg class="i-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button>
-    </article>
-    <article class="svc-it rv">
-      <svg class="svc-v" viewBox="0 0 120 64" aria-hidden="true"><rect class="v-acc-f" x="4" y="26" width="52" height="12" rx="3"/><rect class="v-mute-f" x="60" y="26" width="30" height="12" rx="3"/><rect class="v-mute-f v-dim" x="94" y="26" width="22" height="12" rx="3"/></svg>
-      <h3>ניהול עושר ותיק השקעות</h3>
-      <p>כסף נזיל שעובד: תיק מנוהל על שמכם, קופת גמל להשקעה, ותכנון שמסתכל על כל ההון יחד.</p>
-      <button class="lnk" type="button" data-dlg="portfolio">לפרטים<svg class="i-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button>
+    <article class="adv-card reveal" style="--i:1">
+      <div class="adv-top"><span lang="en">HEDGE FUNDS</span><span class="n">02</span></div>
+      <h3>קרנות גידור</h3>
+      <p>אסטרטגיות שונות תחת שם אחד. בוחנים את דרך הפעולה ואת מסגרת ההשקעה של כל קרן לגופה, בקרנות גידור בנאמנות ובקרנות גידור רגילות.</p>
+      <div class="flow" lang="en" aria-label="אסטרטגיות"><span>Long / Short</span><span>Global Macro</span><span>Multi-Strategy</span></div>
+      <details class="acc"><summary>מה בודקים מעבר לתשואה?</summary>
+        <ul><li>חשיפה נטו, מינוף ותרחישי הפסד.</li><li>דמי הצלחה ושיטת חישובם.</li><li>מועדי פדיון והודעה מוקדמת.</li><li>שיערוך נכסים ובקרה עצמאית.</li></ul></details>
+      <button class="btn b2" type="button" data-open-dlg="g-hedge">למדריך המלא</button>
     </article>
   </div>
 </section>
 
-<!-- the service drawers: one dialog, filled from the button that opened it -->
-<dialog class="dlg glass" data-dlg-box aria-labelledby="dlg-h">
-  <div class="dlg-in">
-    <button class="dlg-x" type="button" data-dlg-close aria-label="סגירה"><span></span><span></span></button>
-    <p class="kicker" data-dlg-k></p>
-    <h3 id="dlg-h" data-dlg-h></h3>
-    <p class="dlg-p" data-dlg-p></p>
-    <ul class="dlg-list" data-dlg-list></ul>
-    <a class="btn btn-primary" data-dlg-go href="https://wa.me/972542908737?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9E%D7%AA%D7%9F%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%20%D7%9E%D7%95%D7%9E%D7%A0%D7%98%D7%95%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%99%D7%97%D7%94." target="_blank" rel="noopener"><svg class="i-wa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.2 21.8l5.1-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.9 2.3 1 2.5c.1.2 1.7 2.6 4.2 3.6 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.4-.2Z"/></svg>לדבר עם מתן על זה</a>
+<section class="sec exp" id="expertise" aria-labelledby="exp-h" data-axis="start" data-comp="C8">
+  <div class="head split reveal">
+    <div><p class="kicker"><b>05</b> · המומחיות שלנו</p>
+    <h2 id="exp-h">חמישה תחומים. <em>תמונה אחת.</em></h2></div>
+    <p class="lead">כל תחום נבחן כחלק מהתמונה הכוללת שלכם. בחרו תחום כדי לקרוא עליו.</p>
   </div>
-</dialog>
+  <ol class="exp-list">
+    <li class="reveal" style="--i:0"><button class="exp-gate" type="button" data-open-dlg="exp-planning"><span class="no">01</span><span class="t"><b>תכנון פיננסי</b><small>הכנסות, הוצאות, נכסים ויעדים על מפה אחת</small></span><svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></li>
+    <li class="reveal" style="--i:1"><button class="exp-gate" type="button" data-open-dlg="exp-wealth"><span class="no">02</span><span class="t"><b>ניהול עושר</b><small>לכל חלק בהון תפקיד, טווח ורמת סיכון</small></span><svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></li>
+    <li class="reveal" style="--i:2"><button class="exp-gate" type="button" data-open-dlg="exp-pension"><span class="no">03</span><span class="t"><b>תכנון פנסיוני וביטוחי</b><small>כל הקופות והכיסויים, מתוך המסלקה</small></span><svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></li>
+    <li class="reveal" style="--i:3"><button class="exp-gate" type="button" data-open-dlg="exp-business"><span class="no">04</span><span class="t"><b>ייעוץ עסקי</b><small>הכסף של העסק ושל מי שעומד מאחוריו</small></span><svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></li>
+    <li class="reveal" style="--i:4"><button class="exp-gate" type="button" data-open-dlg="exp-realestate"><span class="no">05</span><span class="t"><b>נדל"ן</b><small>עסקאות שנבחנות כחלק מהתיק</small></span><svg class="plus" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button></li>
+  </ol>
+</section>
 
-<!-- ============ 05 ABOUT (C2 overlap): the portrait, and Matan's "digital business card" as a glass card that tilts and
-     catches the light as the page scrolls (MV:g125). The card rides the empty lower corner of the portrait only ============ -->
-<section class="sec about" id="about" aria-labelledby="a-h">
-  <div class="about-grid" data-comp="C2">
-    <div class="about-v">
-      <div class="portrait" role="img" aria-label="מקום לתמונה של מתן משה">
-        <svg class="portrait-m" viewBox="0 0 350 178" aria-hidden="true" focusable="false"><path fill="currentColor" d="M151 0H209V178H151V82L69 178H0Z"/><path fill="currentColor" d="M291 0H350V178H292V82L209 178V96.7Z"/></svg>
-        <span class="ph-tag">תמונה של מתן</span>
-      </div>
-      <div class="card-stage">
-        <div class="bcard" data-bcard>
-          <div class="bc-top"><span class="brand "><svg class="brand-m" viewBox="0 0 350 178" aria-hidden="true" focusable="false"><path fill="currentColor" d="M151 0H209V178H151V82L69 178H0Z"/><path fill="currentColor" d="M291 0H350V178H292V82L209 178V96.7Z"/></svg><span class="brand-t">מומנטום</span></span><span class="bc-lic">סוכן ביטוח פנסיוני</span></div>
-          <p class="bc-name">מתן משה</p>
-          <div class="bc-bot"><div><b>מאז</b>2001</div><div><b>טלפון</b><span dir="ltr">054-290-8737</span></div><div><b>רישיון</b><span dir="ltr">···· יושלם</span></div></div>
-        </div>
-      </div>
+<section class="sec deep mkt" id="markets" aria-labelledby="mkt-h" data-comp="C11">
+  <div class="head split reveal">
+    <div><p class="kicker"><b>06</b> · מחוברים לשווקים</p>
+    <h2 id="mkt-h">השווקים על המסך. שיקול הדעת <em>במרכז.</em></h2></div>
+    <p class="lead">תמונת שוק לצד מסגרת חשיבה. הנתונים מוסיפים הקשר; הם אינם הוראת פעולה.</p>
+  </div>
+  <div class="mkt-grid">
+    <div class="mkt-embed tv reveal" data-tv="overview"><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div></div><p class="tv-fallback">סקירת השווקים נטענת מ-TradingView. אם היא לא מופיעה, <a href="https://www.tradingview.com/markets/" target="_blank" rel="noopener">אפשר לראות אותה באתר הספק</a>.</p></div>
+    <div class="mkt-ins">
+      <article class="reveal" style="--i:0"><span class="no">01 / מאקרו</span><h3>ריבית, אינפלציה וצמיחה</h3><p>מבחינים בין הנתון שפורסם לבין הפרשנות לגבי ההמשך.</p></article>
+      <article class="reveal" style="--i:1"><span class="no">02 / חשיפה</span><h3>מה באמת מניע את התיק?</h3><p>מחברים את האירוע בשוק לנכסים ולמטבעות שאתם מחזיקים.</p></article>
+      <article class="reveal" style="--i:2"><span class="no">03 / התנהגות</span><h3>החלטה עם סיבה</h3><p>בוחנים אם חל שינוי בתוכנית, לפני שמגיבים לכותרת.</p></article>
+      <button class="lnk reveal" type="button" data-open-dlg="g-reading-markets">איך קוראים את השוק בהקשר הנכון? <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button>
     </div>
+  </div>
+  <p class="fine reveal">נתוני צד שלישי מ-TradingView, בהתאם לזמינות ולעיכוב של ספק הנתונים. חלק מהמכשירים הם CFD ולא המדד עצמו. אם הרכיב אינו נטען, ניתן לצפות בנתונים באתר הספק.</p>
+</section>
+
+<section class="sec tint about" id="about" aria-labelledby="about-h" data-axis="start" data-comp="C8">
+  <div class="about-grid">
+    <figure class="portrait reveal">
+      <img src="images/matan-900.webp" srcset="images/matan-560.webp 560w, images/matan-900.webp 900w" sizes="(min-width: 1024px) 40vw, 92vw" width="900" height="1125" alt="מתן משה, מייסד מומנטום" loading="lazy" decoding="async">
+      <figcaption lang="en">MATAN MOSHE / MOMENTUM</figcaption>
+    </figure>
     <div class="about-t">
-      <p class="kicker rv"><span class="k-n">03</span>מי אנחנו</p>
-      <h2 id="a-h" class="rv">מאחורי כל תיק עומד בעל הרישיון עצמו.</h2>
-      <p class="lead rv">מתן התחיל כשכיר, ניהל צוותים ומכירות, ומ-2001 הוא עצמאי. לצד פנסיה, גמל והשתלמות, הוא עובד גם עם מה שרוב הסוכנים הפנסיוניים לא מציעים: קרנות גידור בנאמנות ומוצרים מובנים.</p>
-      <p class="rv">מתן מנהל גם את <a href="https://www.facebook.com/groups/" target="_blank" rel="noopener">בול סטריט</a>, קהילת פייסבוק של כ-35 אלף משקיעים בשוק האמריקאי.</p>
-      <div class="partner rv">
-        <span class="partner-ph" role="img" aria-label="מקום לתמונה של ראובן"></span>
-        <p><b>ראובן</b><span>שותף במומנטום</span></p>
+      <div class="head reveal">
+        <p class="kicker"><b>07</b> · האדם שמאחורי ההחלטות</p>
+        <h2 id="about-h">נעים להכיר, <em>מתן משה.</em></h2>
+      </div>
+      <p class="big reveal">כלכלן, סוכן ביטוח פנסיוני ומייסד מומנטום.</p>
+      <p class="body reveal">ההיכרות עם שוק ההון ועם עולם החיסכון מאפשרת להסתכל על הכסף בתוך הקשר רחב: מטרות, סיכון, התנהגות והחלטות לאורך זמן.</p>
+      <p class="body reveal">במומנטום מתחילים בהקשבה ובמיפוי. לאחר מכן בוחנים את הנתונים, מסבירים את החלופות ומגדירים מה דורש בדיקה ומה מצדיק פעולה.</p>
+      <ul class="tags reveal"><li>תמונה מלאה</li><li>שקיפות בשיקולים</li><li>ליווי אישי</li></ul>
+      <a class="btn reveal" href="#contact">בואו נדבר על התמונה שלכם</a>
+      <div class="partner reveal">
+        <span class="ph-r" aria-hidden="true">ר</span>
+        <p><b>ראובן</b><small>שותף במומנטום · מוצרים מובנים, נדל"ן וקרנות גידור</small></p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ============ 06 TRUST BAND (C10): the market, live (TradingView ticker, which Matan asked for), and four facts that
-     come either from Matan or from the data ============ -->
-<section class="band" aria-label="השוק ומה שמאחורינו">
-  <div class="tv" data-tv><div class="tradingview-widget-container"><div class="tradingview-widget-container__widget"></div></div></div>
-  <ul class="facts">
-    <li class="rv"><b class="stat">2001</b><span>עצמאי מאז</span></li>
-    <li class="rv"><b class="stat" data-count-funds data-count>759</b><span>מסלולים בהשוואה, מתעדכן בכל חודש</span></li>
-    <li class="rv"><a href="https://www.facebook.com/groups/" target="_blank" rel="noopener"><b class="stat">34.7K</b><span>משקיעים בקהילת בול סטריט</span></a></li>
-    <li class="rv"><b class="stat" data-count-cos>0</b><span>חברות מנהלות בהשוואה, מנתוני גמל נט</span></li>
-  </ul>
+<section class="sec know" id="knowledge" aria-labelledby="know-h" data-comp="C5">
+  <div class="head split reveal">
+    <div><p class="kicker"><b>08</b> · מרכז הידע</p>
+    <h2 id="know-h">ידע שמוסיף <em>פרספקטיבה.</em></h2></div>
+    <p class="lead">מדריכים מלאים על תיקי השקעות, מוצרים מורכבים, חסכונות, פרישה והעברה בין-דורית.</p>
+  </div>
+  <div class="know-grid"><button class="know-card reveal" type="button" data-open-dlg="g-structured" style="--i:0"><span class="no">01</span><span class="k">מוצרים מובנים</span><b>מוצר מובנה: להבין את התנאים שמאחורי התשואה</b><span class="d">מנפיק, נכס בסיס, קופון, חסמים ונזילות: מפרקים את המבנה.</span><span class="read">פתיחת המדריך <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></span></button><button class="know-card reveal" type="button" data-open-dlg="g-hedge" style="--i:1"><span class="no">02</span><span class="k">קרנות גידור</span><b>קרן גידור: בודקים אסטרטגיה, נזילות ועלויות</b><span class="d">השם אינו מבטיח הגנה. המסמכים והחשיפות הם נקודת ההתחלה.</span><span class="read">פתיחת המדריך <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></span></button><button class="know-card reveal" type="button" data-open-dlg="g-portfolios" style="--i:2"><span class="no">03</span><span class="k">תיקי השקעות</span><b>תיק השקעות: המדיניות לפני הניירות</b><span class="d">מטרות, חשיפות, עלויות ומעקב: מה כדאי לברר לפני פתיחת תיק.</span><span class="read">פתיחת המדריך <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></span></button><button class="know-card reveal" type="button" data-open-dlg="g-compare-returns" style="--i:0"><span class="no">04</span><span class="k">מסלולים וסיכון</span><b>תשואה היא נתון. התאמה היא החלטה.</b><span class="d">מה לבדוק כשמשווים בין קופות ומסלולי חיסכון.</span><span class="read">פתיחת המדריך <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></span></button><button class="know-card reveal" type="button" data-open-dlg="g-whole-picture" style="--i:1"><span class="no">05</span><span class="k">תכנון הון</span><b>החסכונות מפוזרים. האם התוכנית מחוברת?</b><span class="d">איך מתחילים לבחון הון שנצבר בכמה מוצרים וגופים.</span><span class="read">פתיחת המדריך <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></span></button><button class="know-card reveal" type="button" data-open-dlg="g-next-generation" style="--i:2"><span class="no">06</span><span class="k">העברה בין-דורית</span><b>לתכנן את הדור הבא, ולשמור על מרווח הביטחון שלכם</b><span class="d">נקודת פתיחה לסידור ההון והמידע המשפחתי.</span><span class="read">פתיחת המדריך <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></span></button><button class="know-card reveal" type="button" data-open-dlg="g-retirement" style="--i:0"><span class="no">07</span><span class="k">פרישה</span><b>מההון שנצבר להכנסה שתשרת אתכם</b><span class="d">ארבע בדיקות שכדאי להתחיל לפני החלטות הפרישה.</span><span class="read">פתיחת המדריך <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></span></button><button class="know-card reveal" type="button" data-open-dlg="g-reading-markets" style="--i:1"><span class="no">08</span><span class="k">שוק ההון</span><b>מהכותרת בשוק להחלטה בחיסכון</b><span class="d">מסגרת חשיבה שמחברת מאקרו, סיכון והתנהלות אישית.</span><span class="read">פתיחת המדריך <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></span></button><button class="know-card reveal" type="button" data-open-dlg="g-new-money" style="--i:2"><span class="no">09</span><span class="k">כסף שהתפנה</span><b>לפני שמשקיעים סכום משמעותי</b><span class="d">איך מארגנים את ההחלטה אחרי ירושה, מכירה או סיום פיקדון.</span><span class="read">פתיחת המדריך <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></span></button></div>
 </section>
 
-<!-- ============ 07 CALCULATOR (C1 split, MV:b43): the return is the real 5-year average of the chosen track, and the fee
-     line compares with the lowest fee in that track today. Both from the same data ============ -->
-<section class="sec calc" id="calc" aria-labelledby="c-h" data-axis="start">
-  <div class="calc-grid" data-comp="C1">
-    <div class="calc-t">
-      <p class="kicker rv"><span class="k-n">04</span>מחשבון</p>
-      <h2 id="c-h" class="rv">כמה יהיה לכם, ומה דמי הניהול לוקחים בדרך.</h2>
-      <p class="lead rv">התשואה במחשבון היא הממוצע האמיתי של המסלול בחמש השנים האחרונות, מתוך גמל נט. זו לא תחזית, זו נקודת מוצא לשיחה.</p>
-      <div class="calc-in rv" data-calc data-cta-end role="group" aria-labelledby="c-h">
-        <div class="c-row"><label for="c-bal">צבירה היום</label><output for="c-bal" data-o="bal">150,000 ₪</output><input id="c-bal" type="range" min="0" max="2000000" step="10000" value="150000" data-c="bal"></div>
-        <div class="c-row"><label for="c-dep">הפקדה חודשית</label><output for="c-dep" data-o="dep">2,000 ₪</output><input id="c-dep" type="range" min="0" max="12000" step="100" value="2000" data-c="dep"></div>
-        <div class="c-row"><label for="c-yrs">לכמה שנים</label><output for="c-yrs" data-o="yrs">20 שנה</output><input id="c-yrs" type="range" min="1" max="40" step="1" value="20" data-c="yrs"></div>
-        <div class="c-row"><label for="c-fee">דמי ניהול מצבירה</label><output for="c-fee" data-o="fee">0.70%</output><input id="c-fee" type="range" min="0.05" max="1.5" step="0.05" value="0.7" data-c="fee"></div>
-        <div class="c-row c-row-seg"><span class="c-lab" id="c-trk-l">מסלול</span>
-          <div class="seg seg-sm" data-seg="ctrack" role="radiogroup" aria-labelledby="c-trk-l">
-            <button type="button" role="radio" aria-checked="true" data-v="general">כללי</button>
-            <button type="button" role="radio" aria-checked="false" data-v="sp">S&amp;P 500</button>
-            <button type="button" role="radio" aria-checked="false" data-v="stocks">מניות</button>
-            <button type="button" role="radio" aria-checked="false" data-v="bonds">אג״ח</button>
-          </div>
-        </div>
-      </div>
+<section class="sec tint plan" id="planning" aria-labelledby="plan-h" data-comp="C15">
+  <div class="plan-grid">
+    <div class="head reveal">
+      <p class="kicker">גם הפרק הבא הוא חלק מהתמונה</p>
+      <h2 id="plan-h">ההון שלכם. <em>העתיד המשפחתי.</em></h2>
     </div>
-    <div class="calc-out glass rv" aria-live="polite">
-      <p class="co-lab">בעוד <span data-o="yrs2">20 שנה</span> יהיו לכם בערך</p>
-      <p class="co-sum stat" data-o="sum">0 ₪</p>
-      <p class="co-rate">לפי תשואה שנתית של <b data-o="rate">0%</b> לפני דמי ניהול, הממוצע של המסלול ב-5 השנים האחרונות</p>
-      <div class="co-bars" data-bars aria-hidden="true"></div>
-      <p class="co-legend" aria-hidden="true"><span class="lg-dep">הפקדות</span><span class="lg-gain">רווח</span></p>
-      <div class="co-fee">
-        <p><span>דמי הניהול לאורך הדרך</span><b data-o="feecost">0 ₪</b></p>
-        <p class="co-fee-best" data-o="best">&nbsp;</p>
-      </div>
-      <p class="co-note">חישוב להמחשה בלבד, לפי תשואות עבר. אינו תחזית, המלצה או ייעוץ.</p>
-    </div>
+    <article class="plan-card reveal" style="--i:0"><h3>העברה בין-דורית</h3><p>ממפים נכסים ומידע, בוחנים סיוע לילדים ושומרים על מרווח הביטחון שלכם. מתאמים היבטים משפטיים ומיסויים עם בעלי המקצוע המתאימים.</p><button class="lnk" type="button" data-open-dlg="g-next-generation">למדריך המשפחתי <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button></article>
+    <article class="plan-card reveal" style="--i:1"><h3>היערכות לפרישה</h3><p>מחברים את החסכונות למקורות הכנסה ולצרכי המחיה. בודקים החלטות משמעותיות לפני משיכה או בחירה במסלול קצבה.</p><button class="lnk" type="button" data-open-dlg="g-retirement">למדריך הפרישה <svg class="left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5m7-7-7 7 7 7"/></svg></button></article>
   </div>
 </section>
 
-<!-- ============ 08 PROCESS (C6 in a ring, MV:g22, from export/g22.html). A centred composition takes the circle (Liav,
-     30.9.2026): the ring paints itself as the page scrolls, counter-clockwise from the top (forward in a right-to-left page),
-     each station lights and the centre changes to its step. Without the ring (phone, reduced motion, no GSAP) the four
-     steps are a plain numbered list: .is-ring is added by the script only when the scene can run ============ -->
-<section class="sec proc" id="process" aria-labelledby="p-h" data-comp="C6" data-axis="start">
-  <div class="proc-in">
-    <div class="sec-head sec-head-c">
-      <p class="kicker rv"><span class="k-n">05</span>איך עובדים</p>
-      <h2 id="p-h" class="rv">ארבעה צעדים, ושיחה אחת בהתחלה.</h2>
+<section class="sec tools" id="tools" aria-labelledby="calc-h" data-axis="start" data-comp="C1">
+  <div class="head split reveal">
+    <div><p class="kicker"><b>09</b> · בוחנים תרחישים</p>
+    <h2 id="calc-h">נותנים למספרים <em>להרחיב את המבט.</em></h2></div>
+    <p class="lead">שנו את ההנחות ובדקו את השפעת הזמן, ההפקדות, דמי הניהול והאינפלציה.</p>
+  </div>
+  <div class="calc reveal" id="calculator" data-calc>
+    <div class="calc-in" role="group" aria-labelledby="calc-in-h">
+      <h3 id="calc-in-h">הנתונים שלכם</h3>
+      <div class="cf"><label for="c-principal">סכום התחלתי · ₪</label><input class="in" id="c-principal" type="number" inputmode="numeric" min="0" max="100000000" step="1000" value="500000" data-c="principal"></div>
+      <div class="cf"><label for="c-monthly">הפקדה חודשית · ₪</label><input class="in" id="c-monthly" type="number" inputmode="numeric" min="0" max="1000000" step="100" value="2000" data-c="monthly"></div>
+      <div class="cf-row">
+        <div class="cf"><label for="c-years">תקופה · שנים</label><input class="in" id="c-years" type="number" inputmode="numeric" min="1" max="50" step="1" value="10" data-c="years"></div>
+        <div class="cf"><label for="c-rate">תשואה שנתית משוערת · %</label><input class="in" id="c-rate" type="number" inputmode="decimal" min="-20" max="30" step="0.1" value="5" data-c="rate"></div>
+      </div>
+      <div class="cf-row">
+        <div class="cf"><label for="c-fee">דמי ניהול שנתיים מצבירה · %</label><input class="in" id="c-fee" type="number" inputmode="decimal" min="0" max="5" step="0.05" value="0.7" data-c="fee"></div>
+        <div class="cf"><label for="c-infl">אינפלציה שנתית משוערת · %</label><input class="in" id="c-infl" type="number" inputmode="decimal" min="-5" max="20" step="0.1" value="2" data-c="inflation"></div>
+      </div>
+      <label class="check"><input type="checkbox" id="c-real" data-c-real><span>הצגת כוח הקנייה במחירי היום</span></label>
+      <button class="txt" type="button" data-c-gemel>למלא לפי הממוצע של חמש שנים במסלול הכללי בגמל נט (7.7%)</button>
+      <p class="fine">הערכים ההתחלתיים הם דוגמה לחישוב בלבד. אין בהם תחזית או המלצה.</p>
+      <p class="calc-err" role="alert" data-c-err></p>
     </div>
-    <div class="ring" data-ring>
-      <svg class="ring-svg" viewBox="0 0 600 600" aria-hidden="true"><circle class="ring-track" cx="300" cy="300" r="290"/><circle class="ring-draw" cx="300" cy="300" r="290"/></svg>
-      <span class="ring-dot on" style="--a:0" aria-hidden="true"></span><span class="ring-dot" style="--a:1" aria-hidden="true"></span><span class="ring-dot" style="--a:2" aria-hidden="true"></span><span class="ring-dot" style="--a:3" aria-hidden="true"></span>
-      <ol class="ring-steps">
-        <li class="rs on"><span class="rs-n">01</span><h3>שיחת היכרות</h3><p>בטלפון או בזום. מה יש לכם היום, מה אתם רוצים שיהיה, ובאיזה טווח.</p></li>
-        <li class="rs"><span class="rs-n">02</span><h3>מיפוי דרך המסלקה</h3><p>באישור שלכם מושכים את כל המוצרים הפנסיוניים ממקום אחד, בלי לחפש דוחות ובלי לשכוח קופה ישנה.</p></li>
-        <li class="rs"><span class="rs-n">03</span><h3>ניתוח והמלצה</h3><p>כל קופה נבדקת מול המסלול שלה בשוק: תשואה, סיכון ודמי ניהול. ההמלצה מגיעה עם מסמך הנמקה, כמו שהחוק דורש.</p></li>
-        <li class="rs"><span class="rs-n">04</span><h3>ליווי שוטף</h3><p>בודקים שוב כשהשוק זז, כשהחיים משתנים, ולפני פרישה.</p></li>
-      </ol>
+    <div class="calc-out" aria-live="polite">
+      <span class="lbl">התרחיש שהזנתם · לאחר דמי ניהול, לפני מס</span>
+      <p class="calc-sum stat" data-c-main>1,056,571 ₪</p>
+      <dl class="calc-sum2"><div><dt>סך ההפקדות הנומינלי</dt><dd data-c-dep>740,000 ₪</dd></div><div><dt data-c-gainl>שינוי מעבר להפקדות</dt><dd data-c-gain>316,571 ₪</dd></div></dl>
+      <svg class="calc-chart" viewBox="0 0 600 260" role="img" aria-labelledby="chart-t" data-c-chart><title id="chart-t">התפתחות החיסכון לאורך התקופה בשלושה תרחישים</title><line class="gl" x1="64" y1="226.0" x2="584" y2="226.0"/><text class="tk" x="54" y="230.0" text-anchor="end">0</text><line class="gl" x1="64" y1="154.7" x2="584" y2="154.7"/><text class="tk" x="54" y="158.7" text-anchor="end">457K</text><line class="gl" x1="64" y1="83.3" x2="584" y2="83.3"/><text class="tk" x="54" y="87.3" text-anchor="end">914K</text><line class="gl" x1="64" y1="12.0" x2="584" y2="12.0"/><text class="tk" x="54" y="16.0" text-anchor="end">1.4M</text><path class="ln lo" d="M64.0,147.9 L116.0,142.4 L168.0,136.7 L220.0,130.9 L272.0,124.9 L324.0,118.8 L376.0,112.6 L428.0,106.2 L480.0,99.7 L532.0,93.0 L584.0,86.2"/><path class="ln base" d="M64.0,147.9 L116.0,140.8 L168.0,133.3 L220.0,125.6 L272.0,117.5 L324.0,109.0 L376.0,100.2 L428.0,91.0 L480.0,81.4 L532.0,71.4 L584.0,61.0"/><path class="ln hi" d="M64.0,147.9 L116.0,139.2 L168.0,129.9 L220.0,120.1 L272.0,109.6 L324.0,98.5 L376.0,86.6 L428.0,74.1 L480.0,60.7 L532.0,46.5 L584.0,31.5"/><text class="tk" x="64" y="252" text-anchor="start">היום</text><text class="tk" x="584" y="252" text-anchor="end">בעוד 10 שנים</text></svg>
+      <ul class="calc-legend"><li><i class="lo"></i>תשואה נמוכה ב-2 נקודות אחוז</li><li><i class="base"></i>התשואה שהזנתם</li><li><i class="hi"></i>תשואה גבוהה ב-2 נקודות אחוז</li></ul>
+      <div class="scen" data-c-scen><div class="sc"><span>תשואה של 3.0% בשנה</span><b>895,315 ₪</b></div><div class="sc base"><span>תשואה של 5.0% בשנה</span><b>1,056,571 ₪</b></div><div class="sc"><span>תשואה של 7.0% בשנה</span><b>1,246,017 ₪</b></div></div>
+      <p class="fine">שלוש הנחות חישוב, ללא הסתברויות. התרחישים אינם גבולות מינימום ומקסימום, ובפועל ייתכן גם הפסד משמעותי יותר. הגרף מניח תשואה קבועה ואינו מדמה תנודתיות.</p>
     </div>
   </div>
+  <details class="acc method reveal"><summary>איך מחושב התרחיש?</summary>
+    <p>החישוב מניח תשואה שנתית אפקטיבית קבועה. מקדם הצמיחה השנתי לאחר דמי ניהול הוא (1 + תשואה) × (1 - דמי ניהול). מקדם הצמיחה החודשי הוא השורש ה-12 של מקדם זה. ההפקדה החודשית מתווספת בסוף כל חודש.</p>
+    <p>בהצגת כוח קנייה, היתרה העתידית מחולקת ב-(1 + אינפלציה) בחזקת מספר השנים. ההפקדות החודשיות נשארות קבועות נומינלית. לא נכללים מס, דמי ניהול מהפקדה, עמלות נוספות או תנאי מוצר. החישוב הוא המחשה מקורבת, ולא חישוב של מוצר מסוים.</p>
+  </details>
 </section>
 
-<!-- ============ 09 CLOSING (MV:ft1, the big closer) with the short form. The phone bar steps down here ============ -->
-<section class="close" id="contact" aria-labelledby="x-h" data-cta-end data-axis="start">
+<section class="sec deep close" id="contact" aria-labelledby="close-h" data-axis="start" data-cta-end>
   <div class="close-grid">
     <div class="close-t">
-      <h2 id="x-h" class="close-h rv">נדבר על הכסף שלכם.</h2>
-      <p class="lead rv">שיחה ראשונה, בלי התחייבות. אפשר בוואטסאפ, בטלפון, או להשאיר פרטים כאן.</p>
-      <div class="close-cta rv">
-        <a class="btn btn-primary btn-lg shine" href="https://wa.me/972542908737?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9E%D7%AA%D7%9F%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%20%D7%9E%D7%95%D7%9E%D7%A0%D7%98%D7%95%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%99%D7%97%D7%94." target="_blank" rel="noopener"><svg class="i-wa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.2 21.8l5.1-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.9 2.3 1 2.5c.1.2 1.7 2.6 4.2 3.6 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.4-.2Z"/></svg>לשיחה עם מתן בוואטסאפ</a>
-        <a class="btn btn-glass btn-lg" href="tel:+972542908737"><svg class="i-ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h3.2l1.6 4.2-2.1 1.3a11 11 0 0 0 7.3 7.3l1.3-2.1 4.2 1.6V19a1.8 1.8 0 0 1-1.9 1.8A16.6 16.6 0 0 1 3.2 5.4 1.8 1.8 0 0 1 5 3.5Z"/></svg><span dir="ltr">054-290-8737</span></a>
+      <div class="head reveal">
+        <p class="kicker">הצעד הראשון</p>
+        <h2 id="close-h">בואו נדבר על <em>התמונה שלכם.</em></h2>
+        <p class="lead">ספרו מה מעסיק אתכם בחסכונות ובהשקעות. נבחן יחד אם הליווי של מומנטום מתאים לצרכים שלכם.</p>
       </div>
+      <ul class="contact reveal">
+        <li><a href="tel:+972542908737"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg><span class="ltr">054-290-8737</span></a></li>
+        <li><a href="mailto:info@momentum-fin.co.il"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg><span class="ltr">info@momentum-fin.co.il</span></a></li>
+        <li><span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 21s-7-6.2-7-11.5A7 7 0 0 1 19 9.5C19 14.8 12 21 12 21z"/><circle cx="12" cy="9.5" r="2.5"/></svg>ספיר 7, חיפה</span></li>
+      </ul>
     </div>
-    <div class="form-card glass rv" data-state="idle">
-      <h3 class="form-h">או שמתן יחזור אליכם</h3>
-      <form class="lead-form" data-form="talk" novalidate>
-        <div class="sum" data-summary tabindex="-1" role="alert"><div><div class="sum-in"><b data-sum-count></b><ul></ul></div></div></div>
-        <div class="f-row">
-          <div class="f"><label for="x-name">שם</label><div class="f-in"><input id="x-name" name="name" type="text" autocomplete="name" data-v="name" required aria-describedby="x-name-e"><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div class="f-err" id="x-name-e"><p></p></div></div>
-          <div class="f"><label for="x-phone">טלפון</label><div class="f-in"><input id="x-phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" dir="ltr" data-v="phone" required aria-describedby="x-phone-e"><svg class="tick" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg></div><div class="f-err" id="x-phone-e"><p></p></div></div>
-        </div>
-        <fieldset class="topic">
-          <legend>על מה תרצו לדבר? <span class="opt">(לא חובה)</span></legend>
-          <div class="topic-in">
-            <label><input type="radio" name="topic" value="pension"><span>פנסיה וגמל</span></label>
-            <label><input type="radio" name="topic" value="hishtalmut"><span>קרן השתלמות</span></label>
-            <label><input type="radio" name="topic" value="advanced"><span>השקעות מתקדמות</span></label>
-            <label><input type="radio" name="topic" value="retire"><span>פרישה</span></label>
-          </div>
-        </fieldset>
-        <label class="consent"><input type="checkbox" name="consent" data-v="consent"><span>קראתי את <a href="privacy.html">מדיניות הפרטיות</a> ואני מאשר/ת שמומנטום תחזור אליי בנוגע לפנייה.</span></label>
-        <div class="consent-err f-err"><p></p></div>
-        <button class="btn btn-primary btn-lg btn-block send" type="submit"><span class="spin" aria-hidden="true"></span><span data-lab>שליחה</span></button>
-        <div class="panel" data-panel role="status"><div><div class="panel-in"><p><svg class="ring-cd" viewBox="0 0 20 20" aria-hidden="true"><circle cx="10" cy="10" r="8"/></svg><span data-msg></span></p><p data-sub></p></div></div></div>
-      </form>
-      <p class="form-foot">רק שם וטלפון, ומתן יחזור אליכם.</p>
-    </div>
+    <form class="form reveal" data-form="lead" novalidate>
+      <h3>מתחילים בהיכרות</h3>
+      <div class="fld"><label for="f-name">השם שלכם</label><input class="in" id="f-name" name="name" autocomplete="name" placeholder="שם מלא" required aria-describedby="f-name-e"><span class="msg" id="f-name-e"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7.5v5.5m0 3.2v.3"/></svg>חסר שם, איך לפנות אליכם?</span></div>
+      <div class="fld"><label for="f-topic">על מה תרצו לדבר?</label>
+        <select class="in" id="f-topic" name="topic"><option>בחינת החסכונות וההשקעות</option><option>תיקי השקעות</option><option>מוצרים מובנים</option><option>קרנות גידור</option><option>השקעת כסף שהתפנה</option><option>תכנון ההון המשפחתי</option><option>היערכות לפרישה</option><option>נדל"ן</option></select></div>
+      <div class="fld"><label for="f-msg">משהו נוסף שחשוב שנדע? <small>(לא חובה)</small></label><textarea class="in" id="f-msg" name="message" rows="3"></textarea></div>
+      <p class="form-note">הכפתור יפתח וואטסאפ עם הודעה מוכנה. תוכלו לבדוק ולשלוח אותה בעצמכם. אין צורך למסור כאן מספרי חשבון או מידע פיננסי רגיש.</p>
+      <p class="form-alert" role="alert" data-alert></p>
+      <button class="btn shine" type="submit"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 20l1.3-3.9A8 8 0 1 1 8 19.1z"/><path d="M9 9.5c0 3 2.5 5.5 5.5 5.5"/></svg>להמשך בוואטסאפ</button>
+    </form>
   </div>
 </section>
 
 </main>
-<footer class="ft" data-cta-end>
-  <div class="ft-row">
-    <a class="ft-logo" href="index.html" aria-label="מומנטום, לעמוד הבית"><span class="brand "><svg class="brand-m" viewBox="0 0 350 178" aria-hidden="true" focusable="false"><path fill="currentColor" d="M151 0H209V178H151V82L69 178H0Z"/><path fill="currentColor" d="M291 0H350V178H292V82L209 178V96.7Z"/></svg><span class="brand-t">מומנטום</span></span></a>
-    <nav class="ft-nav" aria-label="ניווט תחתון"><a href="index.html#terminal">איפה אתם עומדים</a><a href="index.html#services">שירותים</a><a href="index.html#about">מי אנחנו</a><a href="index.html#calc">מחשבון</a><a href="index.html#process">איך עובדים</a><a href="https://portal.roeto.co.il/Clientinfo/login" target="_blank" rel="noopener">כניסה ללקוחות</a></nav>
-    <svg class="ft-sign" viewBox="0 0 350 178" aria-hidden="true" focusable="false"><path fill="currentColor" d="M151 0H209V178H151V82L69 178H0Z"/><path fill="currentColor" d="M291 0H350V178H292V82L209 178V96.7Z"/></svg>
+
+<dialog class="dlg" id="exp-planning" aria-labelledby="exp-planning-h">
+  <div class="dlg-top"><span>מומנטום / המומחיות שלנו</span><button class="dlg-x" type="button" data-close-dlg aria-label="סגירה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <article class="dlg-body">
+    <span class="eyebrow">01 · תכנון פיננסי</span>
+    <h2 id="exp-planning-h">תכנון פיננסי: כל הכסף שלכם, על מפה אחת</h2>
+    <p class="dlg-lead">לפני שבוחרים מוצר, מבינים מה המטרה, מתי צריך את הכסף ומה עוד קורה סביבו.</p>
+    <section><h3>מתחילים ממפת מצב</h3><p>הכנסות, הוצאות קבועות, חסכונות, השקעות, הלוואות והתחייבויות. רוב האנשים מחזיקים כמה מוצרים אצל כמה גופים, ואף אחד לא מסתכל עליהם יחד.</p></section>
+    <section><h3>מגדירים יעדים וזמנים</h3><p>דירה, לימודים לילדים, עצמאות כלכלית, פרישה. לכל יעד יש מועד, סכום ורמת ודאות, והם קובעים איך הכסף צריך להיות מושקע.</p></section>
+    <section><h3>בונים תוכנית אחת</h3><p>מחברים בין החיסכון לטווח ארוך, ההשקעות, הנזילות והכיסויים הביטוחיים, כך שכל חלק עושה את התפקיד שלו ומשתלב עם השאר.</p></section>
+    <section><h3>חוזרים לתוכנית</h3><p>החיים משתנים והשוק משתנה. בודקים את התוכנית מחדש באופן קבוע, ולפני כל החלטה משמעותית.</p></section>
+    <a class="btn" href="#contact" data-close-dlg>לשיחת היכרות</a>
+    <p class="fine">מידע כללי להכנה לשיחה. אינו הצעה למוצר, המלצה אישית או תחליף לבדיקה פרטנית.</p>
+  </article>
+</dialog>
+<dialog class="dlg" id="exp-wealth" aria-labelledby="exp-wealth-h">
+  <div class="dlg-top"><span>מומנטום / המומחיות שלנו</span><button class="dlg-x" type="button" data-close-dlg aria-label="סגירה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <article class="dlg-body">
+    <span class="eyebrow">02 · ניהול עושר</span>
+    <h2 id="exp-wealth-h">ניהול עושר: לכל חלק בהון תפקיד</h2>
+    <p class="dlg-lead">הון שנצבר מחוץ לפנסיה צריך מדיניות השקעה ברורה: מה מטרתו, מתי תצטרכו אותו, ואיזה סיכון מתאים לו.</p>
+    <section><h3>מה כל חלק בכסף אמור לעשות</h3><p>כרית ביטחון נזילה, כסף לטווח בינוני והון לטווח ארוך. כל חלק נבחן לפי המועד שבו תצטרכו אותו והתנודות שתוכלו לשאת בדרך.</p></section>
+    <section><h3>הכלים</h3><p>תיק השקעות מנוהל, קופת גמל להשקעה, פוליסות חיסכון, ולמי שמתאים גם מוצרים מובנים וקרנות גידור. הבחירה נעשית לפי התפקיד של הכסף, ולפני שמסתכלים על התשואה האחרונה.</p></section>
+    <section><h3>פיזור של ממש</h3><p>בודקים חפיפה בין מוצרים שונים שמחזיקים בפועל את אותם נכסים, חשיפה למטבעות, עלויות ומיסוי.</p></section>
+    <section><h3>מעקב ודיווח</h3><p>דיווח שמבינים, בדיקה מול המדיניות שנקבעה, ושינוי רק כשיש לו סיבה.</p></section>
+    <a class="btn" href="#contact" data-close-dlg>לשיחת היכרות</a>
+    <p class="fine">מידע כללי להכנה לשיחה. אינו הצעה למוצר, המלצה אישית או תחליף לבדיקה פרטנית. ניהול תיק בפועל מחייב התקשרות עם גורם מורשה.</p>
+  </article>
+</dialog>
+<dialog class="dlg" id="exp-pension" aria-labelledby="exp-pension-h">
+  <div class="dlg-top"><span>מומנטום / המומחיות שלנו</span><button class="dlg-x" type="button" data-close-dlg aria-label="סגירה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <article class="dlg-body">
+    <span class="eyebrow">03 · תכנון פנסיוני וביטוחי</span>
+    <h2 id="exp-pension-h">תכנון פנסיוני וביטוחי: כל הקופות והכיסויים, בבת אחת</h2>
+    <p class="dlg-lead">דרך המסלקה הפנסיונית רואים את כל המוצרים הפנסיוניים שלכם במקום אחד, ומשם מתחילים לשאול את השאלות הנכונות.</p>
+    <section><h3>מיפוי מלא</h3><p>קרנות פנסיה, קופות גמל, קרנות השתלמות וביטוחי מנהלים, כולל קופות ישנות ממקומות עבודה קודמים.</p></section>
+    <section><h3>מסלולים ודמי ניהול</h3><p>באיזה מסלול כל קופה נמצאת, האם הוא מתאים לגיל ולטווח, וכמה דמי ניהול משולמים בפועל מהצבירה ומההפקדה.</p></section>
+    <section><h3>כיסויים ביטוחיים</h3><p>ביטוח חיים, אובדן כושר עבודה והכיסויים שבתוך קרן הפנסיה. מחפשים כפל ביטוחי שעולה כסף, וחורים שמשאירים את המשפחה בלי הגנה.</p></section>
+    <section><h3>המלצה בכתב</h3><p>כל המלצה מגיעה עם מסמך הנמקה, כפי שהחוק מחייב סוכן ביטוח פנסיוני, וההחלטה נשארת אצלכם.</p></section>
+    <a class="btn" href="#contact" data-close-dlg>לשיחת היכרות</a>
+    <p class="fine">מידע כללי להכנה לשיחה. אינו המלצה אישית או תחליף לבדיקה פרטנית של המוצרים שלכם.</p>
+  </article>
+</dialog>
+<dialog class="dlg" id="exp-business" aria-labelledby="exp-business-h">
+  <div class="dlg-top"><span>מומנטום / המומחיות שלנו</span><button class="dlg-x" type="button" data-close-dlg aria-label="סגירה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <article class="dlg-body">
+    <span class="eyebrow">04 · ייעוץ עסקי</span>
+    <h2 id="exp-business-h">ייעוץ עסקי: הכסף של העסק ושל מי שעומד מאחוריו</h2>
+    <p class="dlg-lead">אצל בעלי עסקים ועצמאים, ההחלטות הפיננסיות של העסק ושל המשפחה קשורות זו בזו.</p>
+    <section><h3>חיסכון לבעלי העסק</h3><p>הפקדות לפנסיה, לקרן השתלמות ולביטוח, בהתאם למבנה ההעסקה ולהכנסה, גם לעצמאים וגם לבעלי שליטה.</p></section>
+    <section><h3>כסף שנשאר בעסק</h3><p>עודפי מזומנים שיושבים בחשבון העסקי נבחנים לפי הטווח והנזילות שהעסק צריך, כחלק מהתמונה הכוללת.</p></section>
+    <section><h3>העובדים</h3><p>הסדרי פנסיה וחיסכון לעובדים, ובחירה של גופים ומסלולים.</p></section>
+    <section><h3>עבודה משותפת</h3><p>התכנון נעשה בתיאום עם רואה החשבון ועם היועצים של העסק, כדי שההחלטות יתיישבו גם עם המס וגם עם התזרים.</p></section>
+    <a class="btn" href="#contact" data-close-dlg>לשיחת היכרות</a>
+    <p class="fine">מידע כללי להכנה לשיחה. אינו ייעוץ מס, ייעוץ משפטי או המלצה אישית.</p>
+  </article>
+</dialog>
+<dialog class="dlg" id="exp-realestate" aria-labelledby="exp-realestate-h">
+  <div class="dlg-top"><span>מומנטום / המומחיות שלנו</span><button class="dlg-x" type="button" data-close-dlg aria-label="סגירה"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <article class="dlg-body">
+    <span class="eyebrow">05 · נדל"ן</span>
+    <h2 id="exp-realestate-h">נדל"ן: עסקה שנבחנת כחלק מהתיק</h2>
+    <p class="dlg-lead">במומנטום מלווים גם עסקאות נדל"ן, בהובלת ראובן, והן נבחנות באותה שיטה כמו כל השקעה אחרת.</p>
+    <section><h3>התאמה לתמונה הכוללת</h3><p>כמה מההון אפשר לרתק לנכס, לכמה זמן, ואיך זה משפיע על הנזילות ועל הפיזור של שאר התיק.</p></section>
+    <section><h3>מבנה העסקה</h3><p>הון עצמי, מימון ומינוף, לוחות זמנים, ומה קורה אם משהו מתעכב.</p></section>
+    <section><h3>סיכונים ועלויות</h3><p>מיסוי, עלויות נלוות, תלות ביזם או בשוכר, והאפשרות לצאת מההשקעה.</p></section>
+    <section><h3>אנשי המקצוע</h3><p>בדיקת העסקה נעשית יחד עם עורכי דין, שמאים ויועצי מס, לפי העניין.</p></section>
+    <a class="btn" href="#contact" data-close-dlg>לשיחת היכרות</a>
+    <p class="fine">מידע כללי להכנה לשיחה. אינו הצעה לעסקה מסוימת או המלצה אישית. השקעות נדל"ן כרוכות בסיכון, כולל סיכון נזילות ומינוף.</p>
+  </article>
+</dialog>
+
+<dialog class="dlg" id="g-structured" aria-labelledby="g-structured-h">
+  <div class="dlg-top"><span>מומנטום / מרכז הידע</span><button class="dlg-x" type="button" data-close-dlg aria-label="סגירת המדריך"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <article class="dlg-body"><span class="eyebrow">מוצרים מובנים · עודכן 29.09.2026</span><h2 id="g-structured-h">מוצר מובנה: להבין את התנאים שמאחורי התשואה</h2><p class="dlg-lead">מנפיק, נכס בסיס, קופון, חסמים ונזילות: מפרקים את המבנה.</p><section><h3>מה קונים?</h3><p>מוצר מובנה עשוי לשלב התחייבות של מנפיק עם רכיב נגזר, כך שהתשלום תלוי במדד, מניה, סל נכסים או משתנה אחר. התוצאה נקבעת בנוסחה החוזית. היא אינה זהה בהכרח להחזקת נכס הבסיס, והמבנים שונים זה מזה.</p></section><section><h3>קופון אינו כל התמונה</h3><p>בררו אם הקופון קבוע או מותנה, כיצד נמדד נכס הבסיס והאם יש תקרת תשואה או פדיון מוקדם. במוצר עם חסם יש לבדוק מתי הוא נבחן ומה קורה אם נפרץ. בסל מסוג Worst Of ייתכן שהנכס החלש הוא שקובע את התוצאה, בהתאם למסמכים.</p></section><section><h3>מה משמעות הגנה על הקרן?</h3><p>לא בכל מוצר קיימת הגנה. גם כאשר היא מוצעת, היא עשויה להיות חלקית, מותנית או תקפה רק בפדיון. התחייבות לתשלום תלויה גם ביכולת הפירעון של המנפיק. מכירה מוקדמת עשויה להיות מוגבלת או במחיר נמוך מהסכום שהושקע.</p></section><section><h3>מכינים טבלת תרחישים</h3><p>לפני החלטה בקשו דוגמאות לתשלום במקרה של עלייה, דשדוש, ירידה מתונה וירידה חדה. הפרידו בין קופונים שהתקבלו לבין החזר הקרן. בדקו עלויות גלויות ומובלעות, מטבע, מס, מועד פירעון והחלופות הזמינות. מסמכי המוצר הם שקובעים; אין כאן הצעה למוצר מסוים.</p></section><div class="sources"><h3>מקורות והמשך קריאה</h3><a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins-76" target="_blank" rel="noopener">SEC: מאפיינים וסיכונים של Structured Notes</a><a href="https://www.investor.gov/introduction-investing/general-resources/news-alerts/alerts-bulletins/investor-bulletins/structured" target="_blank" rel="noopener">SEC ו־FINRA: תנאי ההגנה על הקרן</a></div><a class="btn" href="#contact" data-close-dlg>לשיחת היכרות</a><p class="fine">מידע כללי להכנה לשיחה. אינו הצעה למוצר, המלצה אישית או תחליף לבדיקת מסמכים, התאמה, מיסוי ודין במועד הפעולה.</p></article>
+</dialog>
+<dialog class="dlg" id="g-hedge" aria-labelledby="g-hedge-h">
+  <div class="dlg-top"><span>מומנטום / מרכז הידע</span><button class="dlg-x" type="button" data-close-dlg aria-label="סגירת המדריך"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <article class="dlg-body"><span class="eyebrow">קרנות גידור · עודכן 29.09.2026</span><h2 id="g-hedge-h">קרן גידור: בודקים אסטרטגיה, נזילות ועלויות</h2><p class="dlg-lead">השם אינו מבטיח הגנה. המסמכים והחשיפות הם נקודת ההתחלה.</p><section><h3>מבינים את האסטרטגיה</h3><p>קרנות גידור עשויות להשתמש בשורט, מינוף ונגזרים ובאסטרטגיות גמישות. שאלו מה אמור לייצר את התשואה, באילו תנאים האסטרטגיה עלולה להיפגע, ומהן החשיפות בפועל. המונח ״גידור״ אינו מבטיח שלא יהיו הפסדים.</p></section><section><h3>מזהים את המסגרת</h3><p>יש להבחין בין קרן פרטית לבין קרן גידור בנאמנות בישראל. מסגרת ההשקעה, אופן ההצעה, הזכאות, הדיווח והפדיון דורשים בדיקה לפי הקרן והדין הרלוונטי. אין להסיק מתנאים של קרן אחת על קרן אחרת; המקור האמריקאי המצורף עוסק בקרנות פרטיות בארה״ב.</p></section><section><h3>בודקים איך יוצאים</h3><p>בררו מהו מועד הפדיון, כמה זמן מראש יש להגיש בקשה ומתי הכסף מתקבל. בדקו תקופת נעילה, מגבלות פדיון וסמכות לדחות או להשעות משיכות. יש לקרוא את התשקיף או הסכם הקרן העדכני ולברר את התאריך הספציפי לפני הגשת בקשה.</p></section><section><h3>מבינים את המחיר ואת הבקרה</h3><p>בדקו דמי ניהול ודמי הצלחה, כיצד מוגדר הרווח והאם קיים מנגנון High Water Mark או רף תשואה. בקשו להבין כיצד משוערכים הנכסים, מי מבקר את הדוחות ומהי רמת השקיפות. השוו תוצאות לאחר העלויות הרלוונטיות ואל תניחו שהעבר יחזור.</p></section><div class="sources"><h3>מקורות והמשך קריאה</h3><a href="https://www.investor.gov/introduction-investing/investing-basics/investment-products/private-investment-funds/hedge-funds" target="_blank" rel="noopener">SEC: שאלות לבחינת קרנות גידור פרטיות</a><a href="https://maya.tase.co.il/he/reports/funds" target="_blank" rel="noopener">מאיה: דיווחי קרנות ותשקיפים בישראל</a></div><a class="btn" href="#contact" data-close-dlg>לשיחת היכרות</a><p class="fine">מידע כללי להכנה לשיחה. אינו הצעה למוצר, המלצה אישית או תחליף לבדיקת מסמכים, התאמה, מיסוי ודין במועד הפעולה.</p></article>
+</dialog>
+<dialog class="dlg" id="g-portfolios" aria-labelledby="g-portfolios-h">
+  <div class="dlg-top"><span>מומנטום / מרכז הידע</span><button class="dlg-x" type="button" data-close-dlg aria-label="סגירת המדריך"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <article class="dlg-body"><span class="eyebrow">תיקי השקעות · עודכן 29.09.2026</span><h2 id="g-portfolios-h">תיק השקעות: המדיניות לפני הניירות</h2><p class="dlg-lead">מטרות, חשיפות, עלויות ומעקב: מה כדאי לברר לפני פתיחת תיק.</p><section><h3>מה מנהלים, והיכן?</h3><p>בתיק מנוהל, מנהל תיקים פועל בחשבון הלקוח לפי הרשאה ומדיניות שנקבעו. לפני התקשרות חשוב לברר מי הגוף המנהל, היכן מוחזקים הנכסים, מה כוללת ההרשאה ואיך מתקבלים הדוחות. יש לבדוק את רישיון נותן השירות ואת ההסכם.</p></section><section><h3>מגדירים מדיניות ברורה</h3><p>בחנו מטרות, טווח השקעה, צרכי נזילות, מגבלות ורמת הפסד שתוכלו לשאת. הגדירו כיצד תיראה החשיפה למניות, אג״ח ומטבעות. התיק צריך להיבחן לצד החסכונות האחרים שלכם, כדי לזהות חשיפות כפולות.</p></section><section><h3>מסתכלים על העלות הכוללת</h3><p>בקשו פירוט של דמי ניהול, עמלות מסחר ומשמורת ועלויות של מוצרים המוחזקים בתיק. בדקו כיצד מתוגמל נותן השירות ואם קיימת זיקה למוצרים. אל תניחו שהיעדר דמי ניהול ישירים פירושו שאין עלויות.</p></section><section><h3>בוחנים תוצאה בהקשר</h3><p>השוו את הביצועים למדד ייחוס מתאים למדיניות, באותה תקופה ובהתייחס להפקדות, משיכות ועלויות. שאלו מה השתנה בחשיפות ומה הוביל להחלטות. עלייה או ירידה לבדן אינן מסבירות את איכות ניהול הסיכון.</p></section><div class="sources"><h3>מקורות והמשך קריאה</h3><a href="https://www.moreinvest.co.il/מוצרים/ניהול-תיקי-השקעות/" target="_blank" rel="noopener">מור: תהליך פתיחת תיק השקעות</a><a href="https://www.meitav.co.il/portfolio_management/" target="_blank" rel="noopener">מיטב: ניהול תיקי השקעות</a></div><a class="btn" href="#contact" data-close-dlg>לשיחת היכרות</a><p class="fine">מידע כללי להכנה לשיחה. אינו הצעה למוצר, המלצה אישית או תחליף לבדיקת מסמכים, התאמה, מיסוי ודין במועד הפעולה.</p></article>
+</dialog>
+<dialog class="dlg" id="g-compare-returns" aria-labelledby="g-compare-returns-h">
+  <div class="dlg-top"><span>מומנטום / מרכז הידע</span><button class="dlg-x" type="button" data-close-dlg aria-label="סגירת המדריך"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <article class="dlg-body"><span class="eyebrow">מסלולים וסיכון · עודכן 29.09.2026</span><h2 id="g-compare-returns-h">תשואה היא נתון. התאמה היא החלטה.</h2><p class="dlg-lead">מה לבדוק כשמשווים בין קופות ומסלולי חיסכון.</p><section><h3>מתחילים מהשוואה דומה</h3><p>בדקו שהמוצרים והמסלולים הנבחנים דומים במטרתם ובמאפייניהם. לצד התקופה, רשמו את שם המסלול המדויק, מספרו ומועד העדכון. שם כללי דומה אינו תחליף לבדיקת הרכב ההשקעות.</p></section><section><h3>בודקים מה המספר כולל</h3><p>נתוני התשואה בגמל נט מוצגים כתשואה נומינלית ברוטו, לפני ניכוי דמי ניהול. לכן אין לראות בהם את התשואה האישית נטו בחשבון שלכם. עלויות, מועדי הפקדה ומשיכה ונתונים אישיים נוספים משפיעים על התוצאה בפועל.</p></section><section><h3>נותנים לסיכון מקום</h3><p>לצד התשואה בוחנים חשיפה למניות ולמטבע, ריכוזיות ושינויים בהרכב. השוו כמה תקופות עם מועדי סיום אחידים, ושאלו אם ההבדלים נובעים גם מרמת סיכון שונה. דירוג של תקופה בודדת אינו תחזית לעתיד.</p></section><section><h3>מכינים החלטה מנומקת</h3><p>כתבו מדוע אתם בוחנים שינוי: צורך בנזילות, שינוי בטווח ההשקעה, עלויות או אי־התאמה לסיכון. לאחר מכן בדקו אם החלופה עונה לסיבה הזו. מקום ראשון בטבלה אינו מסביר לבדו מדוע מוצר מתאים לכם.</p></section><div class="sources"><h3>מקורות והמשך קריאה</h3><a href="https://gemelnet.cma.gov.il/views/dafMakdim_Link3.aspx" target="_blank" rel="noopener">מקורות המידע והנחות המערכת: גמל נט</a></div><a class="btn" href="#contact" data-close-dlg>לשיחת היכרות</a><p class="fine">מידע כללי להכנה לשיחה. אינו הצעה למוצר, המלצה אישית או תחליף לבדיקת מסמכים, התאמה, מיסוי ודין במועד הפעולה.</p></article>
+</dialog>
+<dialog class="dlg" id="g-whole-picture" aria-labelledby="g-whole-picture-h">
+  <div class="dlg-top"><span>מומנטום / מרכז הידע</span><button class="dlg-x" type="button" data-close-dlg aria-label="סגירת המדריך"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <article class="dlg-body"><span class="eyebrow">תכנון הון · עודכן 29.09.2026</span><h2 id="g-whole-picture-h">החסכונות מפוזרים. האם התוכנית מחוברת?</h2><p class="dlg-lead">איך מתחילים לבחון הון שנצבר בכמה מוצרים וגופים.</p><section><h3>מתחילים ממפת מצב</h3><p>כשחיסכון נבנה לאורך שנים, הוא מצטבר לעיתים בכמה מקומות: קרן השתלמות, קופת גמל, פוליסה, פיקדון או חשבון השקעות. השאלה הראשונה היא מה התפקיד של כל סכום בתוכנית המשפחתית. רכזו יתרה, מסלול, עלויות, תנאי משיכה ומטרת שימוש לכל חשבון.</p></section><section><h3>מגדירים שלושה אופקי שימוש</h3><p>סמנו כסף להוצאות קרובות, כסף למטרות ביניים והון לטווח ארוך. החלוקה אינה קובעת אוטומטית במה להשקיע; היא מסייעת לנסח את הדרישות מכל חלק בתיק. כסף למטרה גמישה שונה מכסף להתחייבות במועד קשיח.</p></section><section><h3>דוגמה שממחישה את השאלה</h3><p>למשפחה יש 800 אלף ש״ח בכמה חסכונות והיא שוקלת להעביר 150 אלף ש״ח לילד בתוך שנה. הדוגמה אינה מספקת בסיס להמלצה על מסלול. היא ממחישה מדוע צריך קודם להפריד בין הסכום המיועד להעברה לבין היתרה, ולבדוק הכנסה, התחייבויות ויכולת לספוג ירידות.</p></section><section><h3>מה להביא לשיחה</h3><p>דוחות עדכניים, פירוט עלויות, רשימת התחייבויות והוצאות גדולות צפויות. אין צורך לקבל החלטה על מעבר גוף כדי להתחיל להבין את המצב. לעיתים הבדיקה מצביעה על שינוי, ולעיתים על צורך בארגון ומעקב בלבד.</p></section><a class="btn" href="#contact" data-close-dlg>לשיחת היכרות</a><p class="fine">מידע כללי להכנה לשיחה. אינו הצעה למוצר, המלצה אישית או תחליף לבדיקת מסמכים, התאמה, מיסוי ודין במועד הפעולה.</p></article>
+</dialog>
+<dialog class="dlg" id="g-next-generation" aria-labelledby="g-next-generation-h">
+  <div class="dlg-top"><span>מומנטום / מרכז הידע</span><button class="dlg-x" type="button" data-close-dlg aria-label="סגירת המדריך"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <article class="dlg-body"><span class="eyebrow">העברה בין־דורית · עודכן 29.09.2026</span><h2 id="g-next-generation-h">לתכנן את הדור הבא, ולשמור על מרווח הביטחון שלכם</h2><p class="dlg-lead">נקודת פתיחה לסידור ההון והמידע המשפחתי.</p><section><h3>מגדירים מטרות וציפיות</h3><p>האם המטרה היא סיוע לילדים בזמן הקרוב, ארגון מידע למקרה חירום או תכנון העברת נכסים בעתיד? אלו צרכים שונים. לפני העברת כסף, בחנו את ההכנסה וההוצאות שלכם, את הנזילות ואת הגמישות שתרצו לשמור.</p></section><section><h3>בונים מפת מידע</h3><p>רכזו רשימת גופים וחשבונות, נכסים, התחייבויות, אנשי קשר ומסמכים קיימים. שמרו מידע רגיש באופן מאובטח והחליטו מי צריך לדעת היכן נמצא המידע. אין צורך להפיץ סיסמאות או מסמכים לכל בני המשפחה.</p></section><section><h3>מתאמים מסמכים ובעלי מקצוע</h3><p>רשמו אילו הוראות מוטבים ומסמכי צוואה קיימים ומתי עודכנו. את המשמעות המשפטית ואת ההתאמה ביניהם יש לבדוק פרטנית עם עורך דין. ייפוי כוח מתמשך עוסק בטיפול בענייניו של אדם בעתיד כשלא יוכל לטפל בהם בעצמו; יש לבחון אותו בהתאם למצב האישי.</p></section><section><h3>מפרידים תכנון פיננסי מהסדרה משפטית</h3><p>הבדיקה הפיננסית עוסקת בצרכים, במבנה ההון ובתרחישים. מסמכים משפטיים ושאלות מס דורשים אנשי מקצוע מתאימים. במפגש המשפחתי כדאי לתעד מה הוחלט, מה עדיין פתוח ומי אחראי לכל בדיקה.</p></section><div class="sources"><h3>מקורות והמשך קריאה</h3><a href="https://www.gov.il/he/service/edit_and_deposit_continuous_power_of_attorney" target="_blank" rel="noopener">עריכה והפקדה של ייפוי כוח מתמשך: האפוטרופוס הכללי</a></div><a class="btn" href="#contact" data-close-dlg>לשיחת היכרות</a><p class="fine">מידע כללי להכנה לשיחה. אינו הצעה למוצר, המלצה אישית או תחליף לבדיקת מסמכים, התאמה, מיסוי ודין במועד הפעולה.</p></article>
+</dialog>
+<dialog class="dlg" id="g-retirement" aria-labelledby="g-retirement-h">
+  <div class="dlg-top"><span>מומנטום / מרכז הידע</span><button class="dlg-x" type="button" data-close-dlg aria-label="סגירת המדריך"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <article class="dlg-body"><span class="eyebrow">פרישה · עודכן 29.09.2026</span><h2 id="g-retirement-h">מההון שנצבר להכנסה שתשרת אתכם</h2><p class="dlg-lead">ארבע בדיקות שכדאי להתחיל לפני החלטות הפרישה.</p><section><h3>מתחילים מתקציב משק הבית</h3><p>בחנו הוצאות שוטפות, התחייבויות, תמיכה בבני משפחה והוצאות חד־פעמיות צפויות. הפרידו בין הוצאות הכרחיות להוצאות שניתן לשנות. התכנון צריך לשקף את משק הבית ואת מקורות ההכנסה של שני בני הזוג, כשזה רלוונטי.</p></section><section><h3>ממפים הכנסות והון</h3><p>אספו תחזיות קצבה ודוחות חיסכון עדכניים. הפרידו בין הכנסה צפויה לבין סכומים שיידרשו למשיכה מההון. תחזית אינה התחייבות, ולכן חשוב לבדוק הנחות, תנאי זכאות ומועדי תחילת תשלום.</p></section><section><h3>בודקים זכויות ומיסוי לפני פעולה</h3><p>קיבוע זכויות הוא הליך לקביעת אופן קבלת הפטור ממס על קצבה מזכה או על היוון קצבה, בהתאם לתנאים. עצם ההגעה לפרישה אינה מספקת כדי לקבוע מהי הבחירה המתאימה. לפני מילוי טפסים או משיכה, נדרשת בדיקה של הנתונים והבחירות האישיות.</p></section><section><h3>בוחנים גם תרחיש פחות נוח</h3><p>בדקו מה קורה אם ההוצאות גבוהות יותר, ההכנסות נמוכות מהצפוי או שהשוק יורד סמוך לתחילת המשיכות. מטרת הבדיקה היא להבין את הגמישות ואת הסיכון, ולא לקבוע הכנסה עתידית מובטחת.</p></section><div class="sources"><h3>מקורות והמשך קריאה</h3><a href="https://www.gov.il/he/service/itc-request-for-fixed-rights-at-retirement-age" target="_blank" rel="noopener">קיבוע זכויות: רשות המסים</a><a href="https://www.gov.il/he/pages/2026-filling-out-form-161d" target="_blank" rel="noopener">מדריך למילוי טופס 161ד, 2026: רשות המסים</a></div><a class="btn" href="#contact" data-close-dlg>לשיחת היכרות</a><p class="fine">מידע כללי להכנה לשיחה. אינו הצעה למוצר, המלצה אישית או תחליף לבדיקת מסמכים, התאמה, מיסוי ודין במועד הפעולה.</p></article>
+</dialog>
+<dialog class="dlg" id="g-reading-markets" aria-labelledby="g-reading-markets-h">
+  <div class="dlg-top"><span>מומנטום / מרכז הידע</span><button class="dlg-x" type="button" data-close-dlg aria-label="סגירת המדריך"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <article class="dlg-body"><span class="eyebrow">שוק ההון · עודכן 29.09.2026</span><h2 id="g-reading-markets-h">מהכותרת בשוק להחלטה בחיסכון</h2><p class="dlg-lead">מסגרת חשיבה שמחברת מאקרו, סיכון והתנהלות אישית.</p><section><h3>מפרידים עובדה מפרשנות</h3><p>כשקוראים חדשות פיננסיות, נסו לנסח מה קרה בפועל ומהי ההערכה לגבי ההמשך. החלטת ריבית היא אירוע; האמירה כיצד השוק יגיב לה היא פרשנות. הפרדה זו מסייעת להימנע מהפיכת תרחיש אפשרי לוודאות.</p></section><section><h3>מחברים את האירוע לחשיפה</h3><p>בדקו אילו חלקים מהחיסכון מושפעים מהאירוע. השאלה תלויה בסוגי הנכסים, במטבע, בטווח ההשקעה ובהרכב המסלול. שינוי בכותרת אינו בהכרח שינוי משמעותי בתוכנית שלכם.</p></section><section><h3>בוחנים תרחישים, לא רק תחזית</h3><p>במקום להסתמך על כיוון אחד, שאלו מה יקרה אם ההערכה לא תתממש: האם יהיה צורך למשוך כסף, האם תידרש התאמה, ומה מידת הגמישות שלכם. אפשר להשתמש במחשבון כדי לבחון רגישות להנחות, אך הוא אינו מדמה את התנודתיות בדרך.</p></section><section><h3>מגדירים מראש מה מצדיק פעולה</h3><p>סיבה לבחינה מחדש יכולה להיות שינוי בצרכים, ברמת הסיכון או במבנה ההחזקות. תיעוד הסיבה עוזר להבדיל בין החלטה מקצועית לבין תגובה ללחץ. גם החלטה להמשיך בתוכנית צריכה להישען על בחינה עדכנית.</p></section><a class="btn" href="#contact" data-close-dlg>לשיחת היכרות</a><p class="fine">מידע כללי להכנה לשיחה. אינו הצעה למוצר, המלצה אישית או תחליף לבדיקת מסמכים, התאמה, מיסוי ודין במועד הפעולה.</p></article>
+</dialog>
+<dialog class="dlg" id="g-new-money" aria-labelledby="g-new-money-h">
+  <div class="dlg-top"><span>מומנטום / מרכז הידע</span><button class="dlg-x" type="button" data-close-dlg aria-label="סגירת המדריך"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg></button></div>
+  <article class="dlg-body"><span class="eyebrow">כסף שהתפנה · עודכן 29.09.2026</span><h2 id="g-new-money-h">לפני שמשקיעים סכום משמעותי</h2><p class="dlg-lead">איך מארגנים את ההחלטה אחרי ירושה, מכירה או סיום פיקדון.</p><section><h3>מגדירים כמה באמת פנוי להשקעה</h3><p>הפרידו בין הסכום שהתקבל לבין סכומים שעשויים להידרש למס, לסילוק התחייבות או להוצאה קרובה. את ההתחייבויות והמיסוי יש לברר לפני שמקבעים טווח השקעה.</p></section><section><h3>מחברים את הכסף לחסכונות הקיימים</h3><p>בחנו את הסכום החדש כחלק מכלל ההון המשפחתי. השאלה היא כיצד הוא משנה את הנזילות, החשיפות והאפשרויות שלכם, ולא רק איזה מוצר מציע כרגע תשואה מושכת.</p></section><section><h3>מגדירים תוכנית החלטה</h3><p>רשמו מטרות, מועדים, צורך בהכנסה שוטפת ויכולת להתמודד עם ירידה. השוו חלופות לפי אותן שאלות. אל תבלבלו בין מוצר שמאפשר משיכה לבין מוצר שערכו אינו משתנה.</p></section><section><h3>בודקים את תנאי היישום</h3><p>לפני פעולה בקשו להבין עלויות, מגבלות, אופן המעקב והמשמעות של שינוי בעתיד. תעדו את הנחות התכנון וקבעו אילו שינויים בחיים יחייבו בדיקה נוספת.</p></section><a class="btn" href="#contact" data-close-dlg>לשיחת היכרות</a><p class="fine">מידע כללי להכנה לשיחה. אינו הצעה למוצר, המלצה אישית או תחליף לבדיקת מסמכים, התאמה, מיסוי ודין במועד הפעולה.</p></article>
+</dialog>
+
+<div class="bar" data-bar><a class="btn" href="#contact">לשיחת היכרות</a></div>
+<footer class="ft">
+  <div class="ft-cols">
+    <div class="ft-brand">
+      <a class="logo" href="#top" aria-label="מומנטום, לעמוד הבית"><span class="wm" lang="en">Momentum</span><svg class="logo-arrow" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 11.2 21 3l-7.6 18-2.3-7.6z"/></svg></a>
+      <p>הון. שווקים. אנשים.</p>
+    </div>
+    <div class="ft-col">
+      <b>באתר</b>
+      <a href="#solutions">פתרונות השקעה</a>
+      <a href="#returns">השוואת תשואות</a>
+      <a href="#expertise">המומחיות שלנו</a>
+      <a href="#markets">שווקים</a>
+      <a href="#knowledge">מדריכים</a>
+      <a href="#tools">מחשבון</a>
+    </div>
+    <div class="ft-col">
+      <b>קשר</b>
+      <a class="tel" href="tel:+972542908737">054-290-8737</a>
+      <a class="tel" href="mailto:info@momentum-fin.co.il">info@momentum-fin.co.il</a>
+      <span class="ft-addr">ספיר 7, חיפה</span>
+      <a href="https://portal.roeto.co.il/Clientinfo/login" target="_blank" rel="noopener">כניסה ללקוחות</a>
+    </div>
+    <div class="ft-mark" aria-hidden="true"><span class="wm" lang="en">Momentum</span><svg class="logo-arrow" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M3 11.2 21 3l-7.6 18-2.3-7.6z"/></svg></div>
   </div>
-  <div class="ft-contact">
-    <a href="tel:+972542908737" dir="ltr">054-290-8737</a>
-    <a href="https://wa.me/972542908737?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9E%D7%AA%D7%9F%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%20%D7%9E%D7%95%D7%9E%D7%A0%D7%98%D7%95%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%99%D7%97%D7%94." target="_blank" rel="noopener">וואטסאפ</a>
-    <a href="https://www.facebook.com/groups/" target="_blank" rel="noopener">בול סטריט בפייסבוק</a>
-  </div>
+  <p class="ft-disc">מידע כללי בלבד. אין באתר הצעה לרכישת מוצר או המלצה אישית. השקעות כרוכות בסיכון להפסד. תחומי השירות, הזכאות וההתאמה נבחנים פרטנית ובהתאם לרישיון הרלוונטי. מוצרים מובנים וקרנות גידור עלולים לכלול סיכוני נזילות, מנפיק ומינוף. מסמכי המוצר והדין החלים הם שקובעים.</p>
   <div class="ft-legal">
-    <p>© <span data-year>2026</span> מומנטום, מתן משה. סוכן ביטוח פנסיוני בעל רישיון. <span class="ft-lic">מספר רישיון: יושלם</span></p>
-    <nav aria-label="מסמכים"><a href="privacy.html">מדיניות פרטיות</a><a href="terms.html">תנאי שימוש</a><a href="accessibility.html">הצהרת נגישות</a></nav>
-    <p class="ft-credit"><a href="https://liavmatzri.co.il" target="_blank" rel="noopener">עוצב ופותח על ידי ליאב מצרי</a></p>
+    <span>© <span data-year>2026</span> מומנטום</span>
+    <span><a href="terms.html">תנאי שימוש</a> · <a href="privacy.html">מדיניות פרטיות</a> · <a href="accessibility.html">הצהרת נגישות</a> · <a href="https://liavmatzri.co.il" target="_blank" rel="noopener">עוצב ופותח על ידי ליאב מצרי</a></span>
   </div>
 </footer>
-<div class="fabs">
-  <a class="fab fab-a11y" href="accessibility.html" aria-label="נגישות"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8"/><path d="M5 8.5l7 1.5 7-1.5M12 10v5m0 0-3.5 6M12 15l3.5 6"/></svg></a>
-</div>
-<div class="mbar glass" data-mbar role="region" aria-label="פעולה מהירה">
-  <a class="btn btn-primary mb-go" href="https://wa.me/972542908737?text=%D7%A9%D7%9C%D7%95%D7%9D%20%D7%9E%D7%AA%D7%9F%2C%20%D7%94%D7%92%D7%A2%D7%AA%D7%99%20%D7%9E%D7%94%D7%90%D7%AA%D7%A8%20%D7%A9%D7%9C%20%D7%9E%D7%95%D7%9E%D7%A0%D7%98%D7%95%D7%9D%20%D7%95%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%99%D7%97%D7%94." target="_blank" rel="noopener"><svg class="i-wa" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2.2a9.7 9.7 0 0 0-8.4 14.6L2.2 21.8l5.1-1.3A9.7 9.7 0 1 0 12 2.2Zm0 17.7c-1.5 0-3-.4-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8 8 0 1 1 12 19.9Zm4.4-6c-.2-.1-1.4-.7-1.7-.8-.2-.1-.4-.1-.5.1l-.8.9c-.1.2-.3.2-.5.1a6.6 6.6 0 0 1-3.3-2.9c-.2-.4.3-.4.8-1.3.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.5-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.9 2.3 1 2.5c.1.2 1.7 2.6 4.2 3.6 1.6.7 2.2.7 3 .6.5-.1 1.4-.6 1.6-1.1.2-.6.2-1 .1-1.1l-.4-.2Z"/></svg>לשיחה עם מתן</a>
-  <a class="mb-call" href="tel:+972542908737" aria-label="להתקשר 054-290-8737"><svg class="i-ph" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 3.5h3.2l1.6 4.2-2.1 1.3a11 11 0 0 0 7.3 7.3l1.3-2.1 4.2 1.6V19a1.8 1.8 0 0 1-1.9 1.8A16.6 16.6 0 0 1 3.2 5.4 1.8 1.8 0 0 1 5 3.5Z"/></svg></a>
-</div>
+
+<a class="fab-a11y" href="accessibility.html" aria-label="נגישות"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="4.5" r="1.8"/><path d="M5 8.5c2.3.7 4.6 1 7 1s4.7-.3 7-1M12 9.5V14m0 0-3 6.5M12 14l3 6.5"/></svg></a>
+<script>window.MOMENTUM = {"period":202608,"rateGeneral":7.74};</script>
 <script src="vendor/gsap.min.js" defer></script>
-<script src="vendor/ScrollTrigger.min.js" defer></script>
-<script src="vendor/DrawSVGPlugin.min.js" defer></script>
 <script src="vendor/Flip.min.js" defer></script>
-<script src="a11y.js?v=7a7351ff" defer></script>
-<script src="site.js?v=7a7351ff" defer></script>
-<script src="terminal.js?v=7a7351ff" defer></script>
+<script src="js/rank-core.js?v=m2-1" defer></script>
+<script src="js/site.js?v=m2-1" defer></script>
+<script src="js/rank.js?v=m2-1" defer></script>
+<script src="js/a11y.js?v=m2-1" defer></script>
 </body>
 </html>
