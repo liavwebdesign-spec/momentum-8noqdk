@@ -669,3 +669,11 @@ html.a11y-still .reveal { opacity: 1 !important; }
     url("images/hero-towers-1280.webp") center 30% / cover no-repeat; }
 @media (min-width: 1440px) { .hero::before { background: linear-gradient(180deg, rgba(255,255,255,.72) 0%, rgba(255,255,255,.80) 45%, rgba(255,255,255,.93) 78%, #fff 100%),
     url("images/hero-towers-2400.webp") center 30% / cover no-repeat; } }
+
+/* the phone pass before Matan sees it (4.10.2026) */
+.demo { white-space: nowrap; }
+@media (max-width: 767px) {
+  .hero h1 { font-size: calc(min(9.2vw, 44px) * var(--a11y-scale)); } /* three lines at 360 as at 390: "להשקיע מתוך ידע." stays one line */
+  .exp-gate b { font-size: calc(clamp(22px, 6.4vw, 28px) * var(--a11y-scale)); }
+  .calc-chart .tk { font-size: 22px; } /* the chart is drawn 600 wide and shown ~330: 22 in its units reads as 12px */
+}
