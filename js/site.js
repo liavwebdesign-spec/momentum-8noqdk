@@ -7,7 +7,6 @@
   var doc = document.documentElement, $ = function (s, r) { return (r || document).querySelector(s); }, $$ = function (s, r) { return [].slice.call((r || document).querySelectorAll(s)); };
   var reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
   var still = function () { return reduced || doc.classList.contains("a11y-still"); };
-  var WA = "972542908737";
 
   $$("[data-year]").forEach(function (el) { el.textContent = new Date().getFullYear(); });
 
@@ -158,10 +157,11 @@
     bs.forEach(function (b) { b.addEventListener("click", function () { draw(b.getAttribute("data-a")); }); });
   })();
 
-  /* ---------- the form: a name is the only must; it opens WhatsApp with the message ready, and lands on thanks ---------- */
-  var form = $('form[data-form="lead"]');
-  if (form) {
-    var alertBox = $("[data-alert]", form), nameI = $("#f-name"), topicI = $("#f-topic"), msgI = $("#f-msg"), KEY = "momentum-draft";
+  /* ---------- the forms: Matan's at the end, Reuven's in his chapter (Matan, 4.10.2026: "a separate form for each, with his
+     own topics"). A name is the only must; each opens WhatsApp to its own person with the message ready, and lands on thanks ---------- */
+  $$('form[data-form="lead"]').forEach(function (form) {
+    var alertBox = $("[data-alert]", form), nameI = $('[name="name"]', form), topicI = $('[name="topic"]', form), msgI = $('[name="message"]', form);
+    var to = form.getAttribute("data-to"), wa = form.getAttribute("data-wa"), KEY = "momentum-draft-" + wa;
     try { var dr = JSON.parse(localStorage.getItem(KEY) || "null"); if (dr) { nameI.value = dr.name || ""; if (dr.topic) topicI.value = dr.topic; msgI.value = dr.msg || ""; } } catch (e) {}
     var ok = function () { return nameI.value.trim().length >= 2; };
     function mark(good) { var f = nameI.closest(".fld"); if (f) f.classList.toggle("err", !good); nameI.setAttribute("aria-invalid", String(!good)); }
@@ -172,12 +172,12 @@
       if (!ok()) { mark(false); alertBox.textContent = "חסר פרט אחד כדי להמשיך: השם שלכם."; nameI.focus(); return; }
       alertBox.textContent = "";
       var name = nameI.value.trim(), detail = msgI.value.trim();
-      var text = "שלום מתן, שמי " + name + ". אשמח לתאם שיחת היכרות בנושא " + topicI.value + "." + (detail ? "\n" + detail : "");
+      var text = "שלום " + to + ", שמי " + name + ". אשמח לתאם פגישה בנושא " + topicI.value + "." + (detail ? "\n" + detail : "");
       try { sessionStorage.setItem("lead-name", name); localStorage.removeItem(KEY); } catch (e2) {}
-      window.open("https://wa.me/" + WA + "?text=" + encodeURIComponent(text), "_blank", "noopener");
+      window.open("https://wa.me/" + wa + "?text=" + encodeURIComponent(text), "_blank", "noopener");
       setTimeout(function () { location.href = "thanks.html"; }, 300);
     });
-  }
+  });
 
   /* a link that asks for a topic (Reuven's button) opens the form with it chosen */
   $$("[data-topic]").forEach(function (a) { a.addEventListener("click", function () { var t = $("#f-topic"); if (t) t.value = a.getAttribute("data-topic"); }); });

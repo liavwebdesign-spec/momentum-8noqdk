@@ -745,3 +745,6 @@ html.a11y-still .reveal { opacity: 1 !important; }
 .sc i { display: block; height: 4px; margin-top: 8px; border-radius: 4px; background: var(--blue); transform-origin: 100% 50%; transform: scaleX(var(--w)); transition: transform .55s var(--ease); }
 .sc.base i { background: #8DB8FF; }
 @media (prefers-reduced-motion: reduce) { .cb i, .sc i { transition: none; } .hero-globe { transition: none; } }
+
+/* Reuven's own form, in his chapter: a tinted panel (no shadow on tint), quieter than Matan's at the end */
+.rv-form { align-self: stretch; margin-top: clamp(24px, 3vw, 40px); padding: clamp(24px, 2.4vw, 40px); gap: 16px; background: var(--sky); box-shadow: none; }
