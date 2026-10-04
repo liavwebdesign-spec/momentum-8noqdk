@@ -677,3 +677,17 @@ html.a11y-still .reveal { opacity: 1 !important; }
   .exp-gate b { font-size: calc(clamp(22px, 6.4vw, 28px) * var(--a11y-scale)); }
   .calc-chart .tk { font-size: 22px; } /* the chart is drawn 600 wide and shown ~330: 22 in its units reads as 12px */
 }
+
+/* a tinted card on hover: it rises and darkens in its own family, never a shadow (engine/motion.md, card hover: the shadow is
+   for white cards only; Liav, 4.10.2026) */
+@media (hover: hover) and (pointer: fine) {
+  .sol-card:hover, .know-card:hover { box-shadow: none; background: var(--sky-2); }
+  .sol-card.feat:hover { box-shadow: none; background: #071A33; }
+}
+
+/* the quiet way in for existing clients (Roeto), as in the first sketch: a link, not a button */
+.hd-login { display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px; border-radius: 999px; color: var(--muted); text-decoration: none;
+  font-size: calc(14px * var(--a11y-scale)); font-weight: 500; white-space: nowrap; transition: color .15s var(--ease), background .15s var(--ease); }
+.hd-login svg { width: 16px; height: 16px; }
+@media (hover: hover) and (pointer: fine) { .hd-login:hover { color: var(--ink); background: var(--sky); } }
+@media (max-width: 1199px) { .hd-login { display: none; } }
