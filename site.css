@@ -213,7 +213,7 @@ h3 { font-size: var(--fs-h3); line-height: 1.35; font-weight: 500; }
 /* ---------- hero: MV:h1, centred, the copy of Matan's sketch; the live market map peeks at the bottom ---------- */
 .hero { min-height: calc(100svh - var(--peek)); display: grid; align-content: center; justify-items: center; text-align: center;
   padding: calc(var(--hd-h) + 40px) var(--gutter) var(--gap-m); }
-.hero .kicker { justify-content: center; margin-bottom: clamp(14px, 2.6vh, 28px); font-size: var(--fs-micro); letter-spacing: .14em; color: var(--blue); }
+.hero .kicker { justify-content: center; margin-bottom: clamp(14px, 2.6vh, 28px); font-size: var(--fs-micro); letter-spacing: .14em; color: var(--blue-hover); } /* darker than the action blue: it sits on the washed photo */
 .hero h1 { max-width: 16ch; }
 .hero h1 span, .hero h1 em { display: block; }
 .hero .lead { margin: clamp(14px, 3vh, 28px) auto 0; max-width: 34em; }
@@ -659,3 +659,13 @@ html.a11y-still .reveal { opacity: 1 !important; }
 /* the measure of small print: by its own em, about 72 Hebrew characters a line (qa gate: 80 and above fails) */
 .fine, .rk-notes p, .acc p, .alloc-note, .ft-disc, .form-note, .readout-note, .rk-intro, .dlg-body section p, .dlg-body section li, .sources { max-width: 32em; }
 .tv-fallback { max-width: min(32em, 90%); }
+
+/* the hero's ground (Liav, 4.10.2026: "the background is a little too clean and empty, at least in the hero"): towers seen
+   from below (Magnific stock, real photo), washed in white so the headline reads on it, and fading to pure white at the
+   bottom, where the market window rises: one ground, no seam */
+.hero { position: relative; isolation: isolate; }
+.hero::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: linear-gradient(180deg, rgba(255,255,255,.72) 0%, rgba(255,255,255,.80) 45%, rgba(255,255,255,.93) 78%, #fff 100%),
+    url("images/hero-towers-1280.webp") center 30% / cover no-repeat; }
+@media (min-width: 1440px) { .hero::before { background: linear-gradient(180deg, rgba(255,255,255,.72) 0%, rgba(255,255,255,.80) 45%, rgba(255,255,255,.93) 78%, #fff 100%),
+    url("images/hero-towers-2400.webp") center 30% / cover no-repeat; } }
