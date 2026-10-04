@@ -70,7 +70,7 @@
   --f-body: "Google Sans", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
   --f-display: "Mdisp", "Google Sans", system-ui, sans-serif;
 }
-@media (min-width: 1024px) { :root { --peek: clamp(110px, 17vh, 200px); } }
+
 
 *, *::before, *::after { box-sizing: border-box; }
 html { direction: rtl; background: var(--surface); -webkit-text-size-adjust: 100%; overflow-x: clip; scroll-padding-top: 96px; }
@@ -218,7 +218,7 @@ h3 { font-size: var(--fs-h3); line-height: 1.35; font-weight: 500; }
 .hero h1 span, .hero h1 em { display: block; }
 .hero .lead { margin: clamp(14px, 3vh, 28px) auto 0; max-width: 34em; }
 .hero .ctas { display: flex; flex-wrap: wrap; align-items: center; justify-content: center; gap: 12px 28px; margin-top: clamp(24px, 4.4vh, 40px); }
-.hero .audience { margin-top: clamp(14px, 2.4vh, 24px); font-size: var(--fs-micro); color: var(--muted); }
+.hero .audience { margin-top: clamp(14px, 2.4vh, 24px); font-size: var(--fs-micro); color: var(--muted-strong); } /* it sits on the globe dots */
 
 .peek-wrap { padding: 0 var(--gutter); }
 .peek { max-width: var(--wide); margin-inline: auto; border-radius: var(--r-card); background: var(--surface); box-shadow: var(--shadow-shot); overflow: hidden; }
@@ -660,15 +660,18 @@ html.a11y-still .reveal { opacity: 1 !important; }
 .fine, .rk-notes p, .acc p, .alloc-note, .ft-disc, .form-note, .readout-note, .rk-intro, .dlg-body section p, .dlg-body section li, .sources { max-width: 32em; }
 .tv-fallback { max-width: min(32em, 90%); }
 
-/* the hero's ground (Liav, 4.10.2026: "the background is a little too clean and empty, at least in the hero"): towers seen
-   from below (Magnific stock, real photo), washed in white so the headline reads on it, and fading to pure white at the
-   bottom, where the market window rises: one ground, no seam */
-.hero { position: relative; isolation: isolate; }
-.hero::before { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
-  background: linear-gradient(180deg, rgba(255,255,255,.72) 0%, rgba(255,255,255,.80) 45%, rgba(255,255,255,.93) 78%, #fff 100%),
-    url("images/hero-towers-1280.webp") center 30% / cover no-repeat; }
-@media (min-width: 1440px) { .hero::before { background: linear-gradient(180deg, rgba(255,255,255,.72) 0%, rgba(255,255,255,.80) 45%, rgba(255,255,255,.93) 78%, #fff 100%),
-    url("images/hero-towers-2400.webp") center 30% / cover no-repeat; } }
+/* the hero (Matan, 4.10.2026: "an impressive animation at the top instead of the stock list"): the dot globe rises from the
+   bottom of the first screen, arcs of light leave Tel Aviv for the markets. A soft white veil keeps the headline on paper */
+.hero { position: relative; isolation: isolate; overflow: clip; }
+.hero-globe { position: absolute; inset: 0; z-index: -2; width: 100%; height: 100%; opacity: 0; transition: opacity 1.2s var(--ease) .5s; pointer-events: none; }
+.hero-globe.on { opacity: 1; }
+/* the seam (Liav, 4.10.2026: "the bottom of the hero should blend into the section below"): the globe runs on into the top
+   padding of 01 and dissolves there, so the first screen keeps it whole and no edge cuts it */
+.hero { overflow-x: clip; overflow-y: visible; }
+.hero-globe { height: calc(100% + var(--sec)); bottom: auto;
+  -webkit-mask-image: linear-gradient(to bottom, #000 calc(100% - var(--sec) * 1.6), transparent 100%); mask-image: linear-gradient(to bottom, #000 calc(100% - var(--sec) * 1.6), transparent 100%); }
+.hero::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background: radial-gradient(ellipse 50% 46% at 50% 46%, rgba(255,255,255,.94), rgba(255,255,255,.6) 62%, rgba(255,255,255,0) 100%); }
 
 /* the phone pass before Matan sees it (4.10.2026) */
 .demo { white-space: nowrap; }
@@ -691,3 +694,54 @@ html.a11y-still .reveal { opacity: 1 !important; }
 .hd-login svg { width: 16px; height: 16px; }
 @media (hover: hover) and (pointer: fine) { .hd-login:hover { color: var(--ink); background: var(--sky); } }
 @media (max-width: 1199px) { .hd-login { display: none; } }
+
+
+/* ---------- 09 markets: the map moved here from the hero, under its own line (Matan, 4.10.2026), the tape above it ---------- */
+.tv-tape-wrap { display: flex; align-items: center; gap: 20px; max-width: var(--wide); margin: 0 auto clamp(20px, 2vw, 32px); padding: 8px 20px; border-radius: 999px; background: var(--surface); }
+.tv-tape-wrap .ticker-l { color: var(--muted-strong); }
+.mkt-map { max-width: var(--wide); margin: 0 auto clamp(32px, 4vw, 64px); border-radius: var(--r-card); background: var(--surface); overflow: hidden; box-shadow: 0 30px 80px rgba(0,0,0,.28); }
+.mkt-map .peek-map { height: clamp(420px, 58vh, 640px); }
+@media (max-width: 767px) { .tv-tape-wrap { border-radius: var(--r-card); flex-direction: column; align-items: stretch; gap: 4px; } .mkt-map .peek-map { height: 420px; } }
+
+/* ---------- 06 Reuven: his own chapter, the mirror of Matan's; a quiet frame until his photo arrives ---------- */
+.about-grid.flip { grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); }
+.about-grid.flip .portrait { order: 2; }
+.portrait.ph { display: grid; place-items: center; background: var(--sky); }
+.ph-mark { font-family: var(--f-display); font-weight: 800; font-size: clamp(120px, 14vw, 240px); line-height: 1; color: var(--navy); opacity: .1; }
+@media (max-width: 1023px) { .about-grid.flip { grid-template-columns: 1fr; } .about-grid.flip .portrait { order: 0; } }
+.tint .exp-gate svg.plus { background: var(--surface); }
+
+/* ---------- 10 the calculator, alive (MV:b43): blue sliders, columns that grow, a bar under each scenario ---------- */
+.rng { display: flex; flex-direction: column; gap: 4px; }
+.rng-l { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; font-size: var(--fs-meta); color: var(--muted-strong); }
+.rng-l output { color: var(--navy); font-weight: 500; font-variant-numeric: tabular-nums; direction: ltr; unicode-bidi: isolate; }
+.rng input[type="range"] { --p: 50%; width: 100%; height: 44px; margin: 0; background: transparent; cursor: pointer; appearance: none; -webkit-appearance: none; } /* RTL: the low end on the right, like the text */
+.rng input[type="range"]::-webkit-slider-runnable-track { height: 8px; border-radius: 8px; background: linear-gradient(to left, var(--blue) var(--p), var(--sky-2) var(--p)); }
+.rng input[type="range"]::-moz-range-track { height: 8px; border-radius: 8px; background: var(--sky-2); }
+.rng input[type="range"]::-moz-range-progress { height: 8px; border-radius: 8px; background: var(--blue); }
+.rng input[type="range"]::-webkit-slider-thumb { -webkit-appearance: none; width: 24px; height: 24px; margin-top: -8px; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px var(--blue), 0 4px 12px rgba(29,95,209,.35); transition: transform .15s var(--ease); }
+.rng input[type="range"]::-moz-range-thumb { width: 24px; height: 24px; border: 0; border-radius: 50%; background: #fff; box-shadow: 0 0 0 3px var(--blue), 0 4px 12px rgba(29,95,209,.35); }
+.rng input[type="range"]:active::-webkit-slider-thumb { transform: scale(1.15); }
+.rng input[type="range"]:focus-visible { box-shadow: none; outline: 0; }
+.rng input[type="range"]:focus-visible::-webkit-slider-thumb { box-shadow: 0 0 0 3px var(--blue), 0 0 0 8px color-mix(in srgb, var(--blue) 25%, transparent); }
+.calc-in .rng + .rng { margin-top: 4px; }
+.calc-sum2 .dep { background: color-mix(in srgb, var(--navy) 8%, #fff); }
+.calc-sum2 .gain { background: var(--sky); }
+.calc-sum2 .dep dd { color: var(--navy); }
+.calc-sum2 .gain dd { color: var(--blue); }
+.cbars { display: flex; align-items: flex-end; gap: clamp(2px, .4vw, 6px); height: clamp(200px, 22vw, 300px); margin-top: 16px; padding-bottom: 24px; direction: ltr; }
+/* each segment is the full column, scaled from the ground (transform only, so the slider never re-lays the chart):
+   the deposits to --d, the return to --g and lifted onto the deposits */
+.cb { position: relative; flex: 1; height: 100%; min-width: 0; }
+.cb i { position: absolute; inset: 0; transform-origin: 50% 100%; transition: transform .55s var(--ease); }
+.cb i.d { background: var(--navy); transform: scaleY(var(--d)); }
+.cb i.g { border-radius: 2px 2px 0 0; background: linear-gradient(180deg, #5B95F5, var(--blue)); transform: translateY(calc(var(--d) * -100%)) scaleY(var(--g)); }
+.cb.last i.g { background: linear-gradient(180deg, #7AA9FA, #2A6BE0); box-shadow: 0 0 0 2px rgba(29,95,209,.15); }
+.cb span { position: absolute; bottom: -24px; inset-inline: -6px; text-align: center; font-size: 12px; color: var(--muted); font-variant-numeric: tabular-nums; }
+.grow-wait .cb i { transform: scaleY(0) !important; }
+.calc-legend i.dep { background: var(--navy); height: 10px; width: 10px; border-radius: 3px; }
+.calc-legend i.gain { background: var(--blue); height: 10px; width: 10px; border-radius: 3px; }
+.sc { position: relative; overflow: hidden; }
+.sc i { display: block; height: 4px; margin-top: 8px; border-radius: 4px; background: var(--blue); transform-origin: 100% 50%; transform: scaleX(var(--w)); transition: transform .55s var(--ease); }
+.sc.base i { background: #8DB8FF; }
+@media (prefers-reduced-motion: reduce) { .cb i, .sc i { transition: none; } .hero-globe { transition: none; } }

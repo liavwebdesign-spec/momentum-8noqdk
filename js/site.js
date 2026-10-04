@@ -179,6 +179,9 @@
     });
   }
 
+  /* a link that asks for a topic (Reuven's button) opens the form with it chosen */
+  $$("[data-topic]").forEach(function (a) { a.addEventListener("click", function () { var t = $("#f-topic"); if (t) t.value = a.getAttribute("data-topic"); }); });
+
   /* the opening is over: drop the gate so nothing waits on it (the keyframes already ended) */
   if (doc.classList.contains("open-anim")) setTimeout(function () { doc.classList.remove("open-anim"); }, 1900);
 })();

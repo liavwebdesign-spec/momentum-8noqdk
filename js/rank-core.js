@@ -84,26 +84,28 @@
   }
   function scenarios(p) {
     var rates = [p.rate - 2, p.rate, p.rate + 2], rows = rates.map(function (r) { return project(p, r); });
-    var deposits = p.principal + p.monthly * p.years * 12, comparable = deposits;
-    if (p.real) { comparable = p.principal; for (var m = 1; m <= p.years * 12; m++) comparable += p.monthly / Math.pow(1 + p.inflation / 100, m / 12); }
-    return { rates: rates, rows: rows, deposits: deposits, gain: rows[1].value - comparable, real: !!p.real };
+    // what was put in, by the end of each year (in today's prices when asked: each deposit divided by inflation up to its month)
+    var dep = [p.principal], acc = p.principal;
+    for (var m = 1; m <= p.years * 12; m++) { acc += p.real ? p.monthly / Math.pow(1 + p.inflation / 100, m / 12) : p.monthly; if (m % 12 === 0) dep.push(acc); }
+    var deposits = p.principal + p.monthly * p.years * 12;
+    return { rates: rates, rows: rows, dep: dep, deposits: deposits, gain: rows[1].value - dep[dep.length - 1], real: !!p.real, years: p.years };
   }
-  var compact = function (n) { var a = Math.abs(n); return a >= 1e6 ? (n / 1e6).toFixed(a >= 1e7 ? 0 : 1) + "M" : a >= 1e3 ? Math.round(n / 1e3) + "K" : String(Math.round(n)); };
-  // the chart as SVG markup (the page redraws it with the same function): three lines over four grid lines
-  function chart(C, years) {
-    var W = 600, H = 260, L = 64, T = 12, Rr = 16, B = 34, max = Math.max.apply(null, C.rows.reduce(function (a, r) { return a.concat(r.points); }, [1])) * 1.1;
-    var x = function (i) { return L + i / years * (W - L - Rr); }, y = function (n) { return H - B - n / max * (H - T - B); };
-    var s = "";
-    for (var i = 0; i < 4; i++) { var v = max * i / 3; s += '<line class="gl" x1="' + L + '" y1="' + y(v).toFixed(1) + '" x2="' + (W - Rr) + '" y2="' + y(v).toFixed(1) + '"/><text class="tk" x="' + (L - 10) + '" y="' + (y(v) + 4).toFixed(1) + '" text-anchor="end">' + compact(v) + "</text>"; }
-    ["lo", "base", "hi"].forEach(function (k, j) { s += '<path class="ln ' + k + '" d="' + C.rows[j].points.map(function (v, n) { return (n ? "L" : "M") + x(n).toFixed(1) + "," + y(v).toFixed(1); }).join(" ") + '"/>'; });
-    s += '<text class="tk" x="' + L + '" y="' + (H - 8) + '" text-anchor="start">היום</text><text class="tk" x="' + (W - Rr) + '" y="' + (H - 8) + '" text-anchor="end">בעוד ' + years + " שנים</text>";
-    return s;
+  // the columns: one a year (the last one marked), deposits at the bottom in navy, the return above in blue
+  function bars(C) {
+    var pts = C.rows[1].points, max = Math.max.apply(null, C.rows[2].points.concat(pts, [1])), n = pts.length - 1, every = n > 20 ? 5 : n > 10 ? 2 : 1, h = "";
+    for (var y = 1; y <= n; y++) {
+      var tot = pts[y], d = Math.min(C.dep[y], tot), g = Math.max(0, tot - d);
+      h += '<div class="cb' + (y === n ? " last" : "") + '" style="--d:' + (d / max).toFixed(4) + ';--g:' + (g / max).toFixed(4) + '"><i class="g"></i><i class="d"></i><span>' + ((y % every === 0 || y === n) ? y : "") + "</span></div>";
+    }
+    return h;
   }
   function scenCards(C) {
-    return C.rows.map(function (r, i) { return '<div class="sc' + (i === 1 ? " base" : "") + '"><span>תשואה של ' + C.rates[i].toFixed(1) + "% בשנה</span><b>" + ils(r.value) + "</b></div>"; }).join("");
+    var hi = C.rows[2].value || 1;
+    return C.rows.map(function (r, i) { return '<div class="sc' + (i === 1 ? " base" : "") + '"><span>תשואה של ' + C.rates[i].toFixed(1) + '% בשנה</span><b>' + ils(r.value) + '</b><i style="--w:' + Math.max(0.04, r.value / hi).toFixed(3) + '"></i></div>'; }).join("");
   }
+  var compact = function (n) { var a = Math.abs(n); return a >= 1e6 ? (n / 1e6).toFixed(a >= 1e7 ? 0 : 1) + "M" : a >= 1e3 ? Math.round(n / 1e3) + "K" : String(Math.round(n)); };
 
   var api = { KIND: KIND, TRACK: TRACK, PERIOD: PERIOD, rank: rank, trackRate: trackRate, grow: grow, gap: gap, num: num, pct: pct, month: month, ils: ils,
-    ALLOC: ALLOC, ALLOC_LABELS: ALLOC_LABELS, scenarios: scenarios, chart: chart, scenCards: scenCards };
+    ALLOC: ALLOC, ALLOC_LABELS: ALLOC_LABELS, scenarios: scenarios, bars: bars, scenCards: scenCards, compact: compact };
   if (typeof module !== "undefined" && module.exports) module.exports = api; else root.RankCore = api;
 })(typeof window !== "undefined" ? window : this);

@@ -126,31 +126,45 @@
       .catch(function () { /* the table in the HTML stays: the default view, already ranked */ });
   }
 
-  /* ---------- 09 the calculator (MV:b43): every change redraws the three lines, the sums and the scenario cards ---------- */
+  /* ---------- 10 the calculator (MV:b43, Matan 4.10.2026: "more interactive and alive, colours and animation"): sliders with
+     their value beside them; the columns grow and shrink year by year (deposits in navy, the return in blue), the total counts
+     to its new value, and each scenario card carries a bar of its size. The model is Matan's sketch, unchanged ---------- */
   var calc = $("[data-calc]");
   if (calc) {
-    var ins = $$("[data-c]", calc), real = $("[data-c-real]", calc), err = $("[data-c-err]", calc), M = window.MOMENTUM || {};
-    var out = { main: $("[data-c-main]", calc), dep: $("[data-c-dep]", calc), gain: $("[data-c-gain]", calc), gainl: $("[data-c-gainl]", calc), chart: $("[data-c-chart]", calc), scen: $("[data-c-scen]", calc) };
-    var title = out.chart.querySelector("title");
+    var ins = $$("[data-c]", calc), real = $("[data-c-real]", calc), M = window.MOMENTUM || {};
+    var out = { main: $("[data-c-main]", calc), dep: $("[data-c-dep]", calc), gain: $("[data-c-gain]", calc), gainl: $("[data-c-gainl]", calc), lbl: $("[data-c-lbl]", calc), bars: $("[data-c-bars]", calc), scen: $("[data-c-scen]", calc) };
+    var yearsT = function (n) { return n === 1 ? "שנה אחת" : n === 2 ? "שנתיים" : n + " שנים"; };
+    var FMT = { principal: function (v) { return R.ils(v); }, monthly: function (v) { return R.ils(v); }, years: yearsT,
+      rate: function (v) { return v.toFixed(1) + "%"; }, fee: function (v) { return v.toFixed(2) + "%"; }, inflation: function (v) { return v.toFixed(1) + "%"; } };
+    var shown = null, tween = 0;
+    function count(to) {
+      // the total runs from what it showed to its new value in ~0.5s; in reduced motion it just changes
+      if (shown === null || still()) { shown = to; out.main.textContent = R.ils(to); return; }
+      var from = shown, t0 = performance.now(); cancelAnimationFrame(tween);
+      (function step(t) { var k = Math.min(1, (t - t0) / 500), e = 1 - Math.pow(1 - k, 3); shown = from + (to - from) * e; out.main.textContent = R.ils(shown); if (k < 1) tween = requestAnimationFrame(step); })(t0);
+    }
+    function fill(i) { var mn = +i.min, mx = +i.max; i.style.setProperty("--p", ((+i.value - mn) / (mx - mn) * 100).toFixed(1) + "%"); }
     var draw = function () {
-      if (ins.some(function (i) { return i.value === "" || !i.validity.valid; })) {
-        err.textContent = "יש להזין ערכים תקינים בכל השדות, בטווחים המותרים.";
-        ins.forEach(function (i) { i.setAttribute("aria-invalid", String(i.value === "" || !i.validity.valid)); });
-        return;
-      }
-      err.textContent = ""; ins.forEach(function (i) { i.removeAttribute("aria-invalid"); });
-      var p = { real: real.checked }; ins.forEach(function (i) { p[i.getAttribute("data-c")] = +i.value; });
+      var p = { real: real.checked }; ins.forEach(function (i) { var k = i.getAttribute("data-c"); p[k] = +i.value; fill(i); var o = $('[data-out="' + k + '"]', calc); if (o) o.textContent = FMT[k](p[k]); });
       var C = R.scenarios(p);
-      out.main.textContent = R.ils(C.rows[1].value);
-      out.dep.textContent = R.ils(C.deposits);
+      count(C.rows[1].value);
+      out.lbl.textContent = "בעוד " + yearsT(p.years) + " · לאחר דמי ניהול, לפני מס" + (p.real ? ", במחירי היום" : "");
+      out.dep.textContent = R.ils(C.dep[C.dep.length - 1]);
       out.gainl.textContent = p.real ? "שינוי מעבר להפקדות במחירי היום" : "שינוי מעבר להפקדות";
       out.gain.textContent = R.ils(C.gain);
-      out.chart.innerHTML = R.chart(C, p.years); out.chart.insertBefore(title, out.chart.firstChild);
+      out.bars.innerHTML = R.bars(C);
       out.scen.innerHTML = R.scenCards(C);
     };
     ins.forEach(function (i) { i.addEventListener("input", draw); });
     real.addEventListener("change", draw);
     var fillBtn = $("[data-c-gemel]", calc);
     if (fillBtn && M.rateGeneral) fillBtn.addEventListener("click", function () { var r = $('[data-c="rate"]', calc); r.value = M.rateGeneral.toFixed(1); draw(); r.focus({ preventScroll: true }); });
+    draw();
+    // the first time the chart comes into view, the columns grow from the ground
+    if ("IntersectionObserver" in window && !still()) {
+      calc.classList.add("grow-wait");
+      var io = new IntersectionObserver(function (es) { if (es[0].isIntersecting) { calc.classList.remove("grow-wait"); io.disconnect(); } }, { threshold: 0.3 });
+      io.observe(out.bars);
+    }
   }
 })();
